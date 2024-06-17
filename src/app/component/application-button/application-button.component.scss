@@ -1,0 +1,38 @@
+.application__component {
+  margin-top: 60px;
+  width: 596.8px;
+  height: 48px;
+}
+
+.button-continue {
+  position: absolute;
+  width: 224px;
+  height: 48px;
+  background: #222733;
+  border: none;
+}
+
+.button-continue__text {
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 100%;
+  color: #fff;
+}
+
+.text-processing-condition {
+  display: inline-block;
+  height: 48px;
+  width: 337.6px;
+  margin-left: 260px;
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 190%;
+  color: #222733;
+  opacity: 0.5;
+  &__politic-conditions {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+  }
+}
