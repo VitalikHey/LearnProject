@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "address": {
+        "id": 1,
+        "street": "Чапаева",
+        "homeNumber": 14
+      }
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "address": {
+        "id": 1,
+        "street": "Парковая",
+        "homeNumber": 13
+      }
+    },
+    {
+      "id": 3,
+      "name": "Kevin Duck",
+      "email": "Kevin.Duck@example.com",
+      "address": {
+        "id": 1,
+        "street": "Костюкова",
+        "homeNumber": 23
+      }
+    }
+  ]
+}
