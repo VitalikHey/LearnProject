@@ -104,7 +104,7 @@
             "allowTernary": true
           }
         ],
-        "import/no-cycle": ["error", {"maxDepth": 4, "ignoreExternal": true}],
+        "import/no-cycle": ["error", { "maxDepth": 4, "ignoreExternal": true }],
         "@typescript-eslint/no-floating-promises": "warn",
         "@typescript-eslint/no-misused-promises": "warn",
         "@typescript-eslint/await-thenable": "error",

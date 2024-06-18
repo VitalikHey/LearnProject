@@ -3,13 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './component/header/header.component';
-import {NgOptimizedImage} from "@angular/common";
+import { NgOptimizedImage } from '@angular/common';
 import { FormatEventComponent } from './component/format-event/format-event.component';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
-
 
 @NgModule({
   declarations: [
@@ -18,7 +17,14 @@ import { ContactFormComponent } from './component/contact-form/contact-form.comp
     FormatEventComponent,
     ContactFormComponent,
   ],
-  imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule, NgOptimizedImage, ReactiveFormsModule],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
