@@ -1,0 +1,40 @@
+<div class="contact-form__component" [formGroup]="formContact">
+  <input
+    placeholder="Ваше имя"
+    type="text"
+    [ngClass]="notValidForm"
+    formControlName="name"
+  />
+  <span *ngIf="isShowTextDownForm" class="text-not-valid__form">Обязательное поле</span>
+  <input
+    [ngStyle]="{'margin-top': isShowTextDownForm ? '4px' : '19px'}"
+    placeholder="Мобильный телефон"
+    type="tel"
+    [ngClass]="notValidForm"
+    formControlName="number"
+  />
+  <span *ngIf="isShowTextDownForm" class="text-not-valid__form">Обязательное поле</span>
+  <input
+    placeholder="Электронная почта"
+    type="email"
+    [ngClass]="notValidForm"
+    [ngStyle]="{'margin-top': isShowTextDownForm ? '10px' : '19px'}"
+    formControlName="email"
+  />
+  <span *ngIf="isShowTextDownForm" class="text-not-valid__form">Проверьте корректность почтового адреса</span>
+  <div class="application__component">
+    <button class="button-continue">
+      <span (click)="handleValueContact()" class="button-continue__text">Отправить заявку</span>
+    </button>
+    <span class="text-processing-condition">
+    Нажимая кнопку вы соглашаетесь с
+    <span class="text-processing-condition__politic-conditions"
+    >условиями обработки персональных данных </span
+    >и
+    <span class="text-processing-condition__politic-conditions">
+      политикой конфиденциальности</span
+    >
+  </span>
+  </div>
+</div>
+
