@@ -5,9 +5,6 @@
     [ngClass]="notValidForm"
     formControlName="name"
   />
-  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
-    >Обязательное поле</span
-  >
   <input
     [ngStyle]="{ 'margin-top': isShowTextDownForm ? '4px' : '19px' }"
     placeholder="Мобильный телефон"
@@ -15,9 +12,6 @@
     [ngClass]="notValidForm"
     formControlName="number"
   />
-  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
-    >Обязательное поле</span
-  >
   <input
     placeholder="Электронная почта"
     type="email"

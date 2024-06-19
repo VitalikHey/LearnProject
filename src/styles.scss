@@ -19,14 +19,14 @@ body {
   color: #222733;
 }
 
-:focus {
+.page-form__input:focus {
   border: 1px solid #545e76;
   outline: none;
   width: 597px;
   height: 13px;
 }
 
-::placeholder {
+.page-form__input::placeholder {
   font-family: "Lab Grotesque", sans-serif;
   font-weight: 300;
   font-size: 16px;

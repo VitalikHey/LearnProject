@@ -11,6 +11,7 @@ import { FormatEventComponent } from './component/format-event/format-event.comp
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
 import { GetApiDataService } from './component/get-api-data.service';
 import { EventFormComponent } from './component/event-form/event-form.component';
+import { EventDataComponent } from './component/event-data/event-data.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { EventFormComponent } from './component/event-form/event-form.component'
     FormatEventComponent,
     ContactFormComponent,
     EventFormComponent,
+    EventDataComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,6 +1,10 @@
 .event-form__component {
+  position: relative;
   width: 624px;
   height: 339px;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  margin-left: 70px;
 }
 
 .event-form__input {
@@ -42,4 +46,64 @@
   line-height: 100%;
   color: #222733;
   opacity: 0.4;
+}
+
+.event-data__component {
+  position: absolute;
+  bottom: 215px;
+  right: -400px;
+  width: 224px;
+  height: 235px;
+}
+
+.event-data__text {
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #222733;
+  opacity: 0.4;
+}
+
+.price-event__text {
+  margin-top: 16px;
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 120%;
+  color: #222733;
+}
+
+.price-person__text {
+  margin-top: 10px;
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #222733;
+  opacity: 0.8;
+}
+
+.info__component {
+  border-bottom: 1px solid rgba(84, 94, 118, 0.12);
+  padding-top: 16px;
+  width: 224px;
+  height: 40px;
+  &__text {
+    font-family: "Lab Grotesque", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #222733;
+    opacity: 0.4;
+  }
+}
+
+.text-data {
+  margin-left: 20px;
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #222733;
 }

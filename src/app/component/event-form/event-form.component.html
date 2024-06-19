@@ -26,6 +26,9 @@
     type="date"
     formControlName="dateEvent"
   />
+  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+    >Обязательное поле</span
+  >
   <div style="margin-top: 19px" class="page-form__input">
     <input
       placeholder="Дополнительные услуги:"
@@ -64,5 +67,21 @@
         политикой конфиденциальности</span
       >
     </span>
+  </div>
+  <div class="event-data__component">
+    <span class="event-data__text">Примерная стоимость</span>
+    <div class="price-event__text">150000₽</div>
+    <div class="price-person__text">5000₽/чел</div>
+    <div class="info__component format-event__text">
+      <span class="info__component__text">Формат:</span>
+    </div>
+    <div class="info__component count-people-event__text">
+      <span class="info__component__text">Количество гостей: </span
+      ><span class="text-data">{{ eventForm.get("countPeoples")?.value }}</span>
+    </div>
+    <div class="info__component date-event__text">
+      <span class="info__component__text">Дата: </span
+      ><span class="text-data">{{ eventForm.get("dateEvent")?.value }}</span>
+    </div>
   </div>
 </div>
