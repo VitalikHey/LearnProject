@@ -1,8 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Events } from '../data-type/data-type';
-import { GetApiDataService } from '../get-api-data.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -13,7 +10,7 @@ export class ContactFormComponent {
   protected notValidForm: string = 'page-form__input';
   protected isShowTextDownForm: boolean = false;
 
-  protected formContact: FormGroup = new FormGroup({
+  protected readonly formContact: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     number: new FormControl('', Validators.required),
     email: new FormControl('', Validators.email),

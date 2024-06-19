@@ -1,0 +1,45 @@
+.event-form__component {
+  width: 624px;
+  height: 339px;
+}
+
+.event-form__input {
+  position: relative;
+  border: 1px solid #545e76;
+  border-radius: 12px;
+  padding: 30px 32px;
+  width: 780px;
+  height: 80px;
+}
+
+.service__input {
+  background: none;
+  border: none;
+}
+
+.service-select {
+  position: absolute;
+  background: none;
+  border: none;
+}
+
+.count-people__input {
+  accent-color: #545e76;
+  width: 624px;
+}
+
+.count-people__text-form {
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 240;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+.text-down__range {
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #222733;
+  opacity: 0.4;
+}

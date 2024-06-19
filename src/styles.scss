@@ -2,3 +2,74 @@
 body {
   background: #f3f5f8;
 }
+
+.page-form__input {
+  border-radius: 10px;
+  width: 598px;
+  height: 14px;
+  background: #fff;
+  border: none;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 26px;
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #222733;
+}
+
+:focus {
+  border: 1px solid #545e76;
+  outline: none;
+  width: 597px;
+  height: 13px;
+}
+
+::placeholder {
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 100%;
+  color: #222733;
+}
+
+.application__component {
+  position: absolute;
+  margin-top: 35px;
+  width: 596.8px;
+  height: 48px;
+}
+
+.button-continue {
+  position: absolute;
+  width: 224px;
+  height: 48px;
+  background: #222733;
+  border: none;
+}
+
+.button-continue__text {
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 100%;
+  color: #fff;
+}
+
+.text-processing-condition {
+  display: inline-block;
+  height: 48px;
+  width: 337.6px;
+  margin-left: 260px;
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 190%;
+  color: #222733;
+  opacity: 0.5;
+  &__politic-conditions {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+  }
+}

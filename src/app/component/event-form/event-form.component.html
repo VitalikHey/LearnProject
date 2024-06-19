@@ -1,0 +1,68 @@
+<div class="event-form__component" [formGroup]="eventForm">
+  <div class="page-form__input">
+    <span class="count-people__text-form"
+      >Количество гостей: {{ eventForm.get("countPeoples")?.value }}
+    </span>
+  </div>
+  <input
+    type="range"
+    min="10"
+    max="100"
+    [(ngModel)]="countPeople"
+    step="1"
+    id="peopleRange"
+    placeholder="Количество гостей:"
+    class="count-people__input"
+    formControlName="countPeoples"
+  />
+  <span class="text-down__range">От 10 человек</span>
+  <span class="text-down__range" style="margin-left: 458px"
+    >До 100 человек</span
+  >
+  <input
+    style="margin-top: 19px; padding-left: 15px; padding-right: 15px"
+    placeholder="Дата мероприятия:"
+    class="page-form__input"
+    type="date"
+    formControlName="dateEvent"
+  />
+  <div style="margin-top: 19px" class="page-form__input">
+    <input
+      placeholder="Дополнительные услуги:"
+      class="service__input"
+      type="text"
+    />
+    <select class="service-select" formControlName="additionalService">
+      <option value="">Ничего не нужно</option>
+      <option value="Оформление">Оформление</option>
+      <option value="Подбор площадки">Подбор площадки</option>
+      <option value="Составление тайминга">Составление тайминга</option>
+      <option value="Полное сопровождение от ведущего до декора">
+        Полное сопровождение от ведущего до декора
+      </option>
+    </select>
+
+    <!--    Оставляю стиль этой формы на потом, пока займусь более важными делами-->
+  </div>
+  <input
+    style="margin-top: 19px"
+    class="page-form__input"
+    type="text"
+    placeholder="Напишите пожелания по меню"
+    formControlName="desiredMenu"
+  />
+  <div class="application__component">
+    <button (click)="handleValueClick()" class="button-continue">
+      <span class="button-continue__text">Продолжить</span>
+    </button>
+    <span class="text-processing-condition">
+      Нажимая кнопку вы соглашаетесь с
+      <span class="text-processing-condition__politic-conditions"
+        >условиями обработки персональных данных </span
+      >и
+      <span class="text-processing-condition__politic-conditions">
+        политикой конфиденциальности</span
+      >
+    </span>
+  </div>
+</div>
