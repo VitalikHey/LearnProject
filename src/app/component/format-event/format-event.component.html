@@ -1,24 +1,69 @@
 <div class="format-event__component">
   <span class="format-event__text">Выберите формат мероприятия:</span>
-  <div class="format-event__group-button">
-    <button
-      class="format-event__button button-enable"
-      style="margin-right: 13px"
-    >
-      <span class="format-event__button-text button-enable__text">Фуршет</span>
-    </button>
-    <button class="format-event__button button-disable">
-      <span class="format-event__button-text button-disable__text"
-        >Гастрономический ужин</span
+  <ng-container *ngIf="events$ | async as events">
+    <div class="format-event__group-button">
+      <button
+        [ngClass]="
+          isActiveButtonBuffet
+            ? 'format-event__button button-enable'
+            : 'format-event__button button-disable'
+        "
+        style="margin-right: 13px"
+        id="{{ events[0].id }}"
+        (click)="handleClickButtonBuffet()"
       >
-    </button>
-    <button
-      id="buttonBanquet"
-      class="format-event__button button-enable"
-      style="margin-left: 13px"
-    >
-      <span class="format-event__button-text button-enable__text">Банкет</span>
-    </button>
-    <!--    Добавить логику изменения цвета кнопок при нажатии-->
-  </div>
+        <span
+          [ngClass]="
+            isActiveButtonBuffet
+              ? 'format-event__button-text button-enable__text'
+              : 'format-event__button-text button-disable__text'
+          "
+        >
+          {{ events[0].name }}
+        </span>
+      </button>
+
+      <button
+        [ngClass]="
+          isActiveButtonSupper
+            ? 'format-event__button button-enable'
+            : 'format-event__button button-disable'
+        "
+        style="margin-right: 13px"
+        id="{{ events[1].id }}"
+        (click)="handleClickButtonSupper()"
+      >
+        <span
+          [ngClass]="
+            isActiveButtonSupper
+              ? 'format-event__button-text button-enable__text'
+              : 'format-event__button-text button-disable__text'
+          "
+        >
+          {{ events[1].name }}
+        </span>
+      </button>
+
+      <button
+        [ngClass]="
+          isActiveButtonBanquet
+            ? 'format-event__button button-enable'
+            : 'format-event__button button-disable'
+        "
+        style="margin-right: 13px"
+        id="{{ events[2].id }}"
+        (click)="handleClickButtonBanquet()"
+      >
+        <span
+          [ngClass]="
+            isActiveButtonBanquet
+              ? 'format-event__button-text button-enable__text'
+              : 'format-event__button-text button-disable__text'
+          "
+        >
+          {{ events[2].name }}
+        </span>
+      </button>
+    </div>
+  </ng-container>
 </div>

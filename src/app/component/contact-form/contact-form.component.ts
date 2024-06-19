@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Events } from '../data-type/data-type';
+import { GetApiDataService } from '../get-api-data.service';
 
 @Component({
   selector: 'app-contact-form',

@@ -1,34 +1,30 @@
 {
-  "users": [
+  "events": [
     {
       "id": 1,
-      "name": "John Doe",
-      "email": "john.doe@example.com",
-      "address": {
-        "id": 1,
-        "street": "Чапаева",
-        "homeNumber": 14
-      }
+      "name": "Фуршет"
     },
     {
       "id": 2,
-      "name": "Jane Doe",
-      "email": "jane.doe@example.com",
-      "address": {
-        "id": 1,
-        "street": "Парковая",
-        "homeNumber": 13
-      }
+      "name": "Гастрономический ужин"
     },
     {
       "id": 3,
-      "name": "Kevin Duck",
-      "email": "Kevin.Duck@example.com",
-      "address": {
-        "id": 1,
-        "street": "Костюкова",
-        "homeNumber": 23
-      }
+      "name": "Банкет"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "Подбор площадки"
+    },
+    {
+      "id": 2,
+      "name": "Составление тайминга"
+    },
+    {
+      "id": 3,
+      "name": "Полное сопровождение от ведущего до декора"
     }
   ]
 }

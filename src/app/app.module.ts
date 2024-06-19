@@ -9,6 +9,8 @@ import { HeaderComponent } from './component/header/header.component';
 import { NgOptimizedImage } from '@angular/common';
 import { FormatEventComponent } from './component/format-event/format-event.component';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
+import { GetApiDataService } from './component/get-api-data.service';
+import { EventFormComponent } from './component/event-form/event-form.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { ContactFormComponent } from './component/contact-form/contact-form.comp
     HeaderComponent,
     FormatEventComponent,
     ContactFormComponent,
+    EventFormComponent,
   ],
   imports: [
     HttpClientModule,
@@ -25,7 +28,7 @@ import { ContactFormComponent } from './component/contact-form/contact-form.comp
     NgOptimizedImage,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [GetApiDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
