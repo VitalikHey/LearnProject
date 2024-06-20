@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Events, Service } from './data-type/data-type';
+import { Events, Service } from '../data-type/data-type';
 import { catchError, Observable, of } from 'rxjs';
 
 @Injectable()

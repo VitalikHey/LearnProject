@@ -107,3 +107,20 @@
   line-height: 100%;
   color: #222733;
 }
+
+.not-valid-form {
+  border: 1px solid #ff5c00;
+  background: rgba(255, 92, 0, 0.1);
+}
+
+.text-not-valid__form {
+  font-family: "Lab Grotesque", sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 100%;
+  color: #ff5c00;
+  width: 300px;
+  height: 16px;
+  display: inline-block;
+  margin-top: 10px;
+}

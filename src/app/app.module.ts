@@ -9,9 +9,9 @@ import { HeaderComponent } from './component/header/header.component';
 import { NgOptimizedImage } from '@angular/common';
 import { FormatEventComponent } from './component/format-event/format-event.component';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
-import { GetApiDataService } from './component/get-api-data.service';
+import { GetApiDataService } from './component/service/get-api-data.service';
 import { EventFormComponent } from './component/event-form/event-form.component';
-import { EventDataComponent } from './component/event-data/event-data.component';
+import { ButtonValueService } from './component/service/button-value.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,6 @@ import { EventDataComponent } from './component/event-data/event-data.component'
     FormatEventComponent,
     ContactFormComponent,
     EventFormComponent,
-    EventDataComponent,
   ],
   imports: [
     HttpClientModule,
@@ -30,7 +29,7 @@ import { EventDataComponent } from './component/event-data/event-data.component'
     NgOptimizedImage,
     ReactiveFormsModule,
   ],
-  providers: [GetApiDataService],
+  providers: [GetApiDataService, ButtonValueService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

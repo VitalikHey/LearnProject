@@ -1,5 +1,14 @@
 <div class="event-form__component" [formGroup]="eventForm">
-  <div class="page-form__input">
+  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+    >Обязательное поле</span
+  >
+  <div
+    [ngClass]="
+      isShowTextDownForm
+        ? 'page-form__input not-valid-form'
+        : 'page-form__input'
+    "
+  >
     <span class="count-people__text-form"
       >Количество гостей: {{ eventForm.get("countPeoples")?.value }}
     </span>
@@ -22,12 +31,16 @@
   <input
     style="margin-top: 19px; padding-left: 15px; padding-right: 15px"
     placeholder="Дата мероприятия:"
-    class="page-form__input"
+    [ngClass]="
+      isShowTextDownForm
+        ? 'page-form__input not-valid-form'
+        : 'page-form__input'
+    "
     type="date"
     formControlName="dateEvent"
   />
   <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
-    >Обязательное поле</span
+  >Обязательное поле</span
   >
   <div style="margin-top: 19px" class="page-form__input">
     <input
@@ -55,7 +68,7 @@
     formControlName="desiredMenu"
   />
   <div class="application__component">
-    <button (click)="handleValueClick()" class="button-continue">
+    <button (click)="isNotValidForm()" class="button-continue">
       <span class="button-continue__text">Продолжить</span>
     </button>
     <span class="text-processing-condition">
@@ -70,10 +83,11 @@
   </div>
   <div class="event-data__component">
     <span class="event-data__text">Примерная стоимость</span>
-    <div class="price-event__text">150000₽</div>
-    <div class="price-person__text">5000₽/чел</div>
+    <div class="price-event__text">{{ calculatePriceEvent() }}₽</div>
+    <div class="price-person__text">{{ priceOnePerson }}₽/Чел</div>
     <div class="info__component format-event__text">
       <span class="info__component__text">Формат:</span>
+      <span class="text-data">{{ this.valueService.getSelectedValue() }}</span>
     </div>
     <div class="info__component count-people-event__text">
       <span class="info__component__text">Количество гостей: </span
