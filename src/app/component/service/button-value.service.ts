@@ -22,7 +22,8 @@ export class ButtonValueService {
 
   public isValidValue(): boolean {
     if (!this.getSelectedValue()) {
-      return false
-    } return  true
+      return false;
+    }
+    return true;
   }
 }

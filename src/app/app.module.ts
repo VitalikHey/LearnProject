@@ -12,6 +12,9 @@ import { ContactFormComponent } from './component/contact-form/contact-form.comp
 import { GetApiDataService } from './component/service/get-api-data.service';
 import { EventFormComponent } from './component/event-form/event-form.component';
 import { ButtonValueService } from './component/service/button-value.service';
+import { EventComponent } from './component/event/event.component';
+import { HeaderEventComponent } from './component/header-event/header-event.component';
+import {BoolShowPageService} from "./component/service/bool-show-page.service";
 
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ import { ButtonValueService } from './component/service/button-value.service';
     FormatEventComponent,
     ContactFormComponent,
     EventFormComponent,
+    EventComponent,
+    HeaderEventComponent,
   ],
   imports: [
     HttpClientModule,
@@ -29,7 +34,7 @@ import { ButtonValueService } from './component/service/button-value.service';
     NgOptimizedImage,
     ReactiveFormsModule,
   ],
-  providers: [GetApiDataService, ButtonValueService],
+  providers: [GetApiDataService, ButtonValueService, BoolShowPageService, EventFormComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

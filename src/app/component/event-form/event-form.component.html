@@ -40,7 +40,7 @@
     formControlName="dateEvent"
   />
   <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
-  >Обязательное поле</span
+    >Обязательное поле</span
   >
   <div style="margin-top: 19px" class="page-form__input">
     <input
@@ -49,13 +49,15 @@
       type="text"
     />
     <select class="service-select" formControlName="additionalService">
-      <option value="">Ничего не нужно</option>
-      <option value="Оформление">Оформление</option>
-      <option value="Подбор площадки">Подбор площадки</option>
-      <option value="Составление тайминга">Составление тайминга</option>
-      <option value="Полное сопровождение от ведущего до декора">
-        Полное сопровождение от ведущего до декора
-      </option>
+      <ng-container *ngIf="service$ | async as services">
+        <option value="">{{services[4].name}}</option>
+        <option value="Оформление">{{services[3].name}}</option>
+        <option value="Подбор площадки">{{services[0].name}}</option>
+        <option value="Составление тайминга">{{services[1].name}}</option>
+        <option value="Полное сопровождение от ведущего до декора">
+          {{services[2].name}}
+        </option>
+      </ng-container>
     </select>
 
     <!--    Оставляю стиль этой формы на потом, пока займусь более важными делами-->
