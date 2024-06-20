@@ -14,6 +14,7 @@
     type="tel"
     [ngClass]="notValidForm"
     formControlName="number"
+    appPhoneMask
   />
   <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
   >Обязательное поле</span

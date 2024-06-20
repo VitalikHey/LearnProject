@@ -15,9 +15,11 @@ import { ButtonValueService } from './component/service/button-value.service';
 import { EventComponent } from './component/event/event.component';
 import { HeaderEventComponent } from './component/header-event/header-event.component';
 import {BoolShowPageService} from "./component/service/bool-show-page.service";
+import {PhoneMaskDirective} from "./directive/tel-mask.directive";
 
 @NgModule({
   declarations: [
+    PhoneMaskDirective,
     AppComponent,
     HeaderComponent,
     FormatEventComponent,
