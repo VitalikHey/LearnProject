@@ -7,26 +7,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './component/header/header.component';
 import { NgOptimizedImage } from '@angular/common';
-import { FormatEventComponent } from './component/format-event/format-event.component';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
 import { GetApiDataService } from './component/service/get-api-data.service';
 import { EventFormComponent } from './component/event-form/event-form.component';
-import { ButtonValueService } from './component/service/button-value.service';
 import { EventComponent } from './component/event/event.component';
 import { HeaderEventComponent } from './component/header-event/header-event.component';
-import {BoolShowPageService} from "./component/service/bool-show-page.service";
-import {PhoneMaskDirective} from "./directive/tel-mask.directive";
+import { BoolShowPageService } from './component/service/bool-show-page.service';
+import { PhoneMaskDirective } from './directive/tel-mask.directive';
+import { InfoEventComponent } from './component/info-event/info-event.component';
 
 @NgModule({
   declarations: [
     PhoneMaskDirective,
     AppComponent,
     HeaderComponent,
-    FormatEventComponent,
     ContactFormComponent,
     EventFormComponent,
     EventComponent,
     HeaderEventComponent,
+    InfoEventComponent,
   ],
   imports: [
     HttpClientModule,
@@ -36,7 +35,7 @@ import {PhoneMaskDirective} from "./directive/tel-mask.directive";
     NgOptimizedImage,
     ReactiveFormsModule,
   ],
-  providers: [GetApiDataService, ButtonValueService, BoolShowPageService, EventFormComponent],
+  providers: [GetApiDataService, BoolShowPageService, EventFormComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

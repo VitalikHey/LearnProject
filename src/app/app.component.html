@@ -1,8 +1,7 @@
-<ng-container [ngSwitch]="isShowComponent">
-  <ng-container *ngSwitchCase="Steps.Events">
+<ng-container [ngSwitch]="isShowComponentService.getIsShowComponent()">
+  <ng-container *ngSwitchCase="Steps.Event">
     <app-header-event></app-header-event>
     <app-event></app-event>
-    <button (click)="handleClick()">Следующий шаг</button>
   </ng-container>
   <ng-container *ngSwitchCase="Steps.Contact">
     <app-header></app-header>

@@ -1,103 +1,162 @@
-<div class="event-form__component" [formGroup]="eventForm">
-  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
-    >Обязательное поле</span
-  >
-  <div
-    [ngClass]="
-      isShowTextDownForm
-        ? 'page-form__input not-valid-form'
-        : 'page-form__input'
-    "
-  >
-    <span class="count-people__text-form"
-      >Количество гостей: {{ eventForm.get("countPeoples")?.value }}
-    </span>
-  </div>
-  <input
-    type="range"
-    min="10"
-    max="100"
-    [(ngModel)]="countPeople"
-    step="1"
-    id="peopleRange"
-    placeholder="Количество гостей:"
-    class="count-people__input"
-    formControlName="countPeoples"
-  />
-  <span class="text-down__range">От 10 человек</span>
-  <span class="text-down__range" style="margin-left: 458px"
-    >До 100 человек</span
-  >
-  <input
-    style="margin-top: 19px; padding-left: 15px; padding-right: 15px"
-    placeholder="Дата мероприятия:"
-    [ngClass]="
-      isShowTextDownForm
-        ? 'page-form__input not-valid-form'
-        : 'page-form__input'
-    "
-    type="date"
-    formControlName="dateEvent"
-  />
-  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
-    >Обязательное поле</span
-  >
-  <div style="margin-top: 19px" class="page-form__input">
-    <input
-      placeholder="Дополнительные услуги:"
-      class="service__input"
-      type="text"
-    />
-    <select class="service-select" formControlName="additionalService">
-      <ng-container *ngIf="service$ | async as services">
-        <option value="">{{services[4].name}}</option>
-        <option value="Оформление">{{services[3].name}}</option>
-        <option value="Подбор площадки">{{services[0].name}}</option>
-        <option value="Составление тайминга">{{services[1].name}}</option>
-        <option value="Полное сопровождение от ведущего до декора">
-          {{services[2].name}}
-        </option>
-      </ng-container>
-    </select>
-
-    <!--    Оставляю стиль этой формы на потом, пока займусь более важными делами-->
-  </div>
-  <input
-    style="margin-top: 19px"
-    class="page-form__input"
-    type="text"
-    placeholder="Напишите пожелания по меню"
-    formControlName="desiredMenu"
-  />
-  <div class="application__component">
-    <button (click)="isNotValidForm()" class="button-continue">
-      <span class="button-continue__text">Продолжить</span>
-    </button>
-    <span class="text-processing-condition">
-      Нажимая кнопку вы соглашаетесь с
-      <span class="text-processing-condition__politic-conditions"
-        >условиями обработки персональных данных </span
-      >и
-      <span class="text-processing-condition__politic-conditions">
-        политикой конфиденциальности</span
+<div class="format-event__component">
+  <div class="event-form__component" [formGroup]="eventForm">
+    <span class="format-event__text">Выберите формат мероприятия:</span>
+    <ng-container *ngIf="events$ | async as events">
+      <input
+        style="display: none"
+        type="radio"
+        name="event"
+        id="Фуршет"
+        value="{{ events[0].name }}"
+        formControlName="event"
+      />
+      <label class="format-event__button button-disable" for="Фуршет"
+        ><span class="format-event__button-text button-disable__text">{{
+          events[0].name
+        }}</span></label
       >
-    </span>
-  </div>
-  <div class="event-data__component">
-    <span class="event-data__text">Примерная стоимость</span>
-    <div class="price-event__text">{{ calculatePriceEvent() }}₽</div>
-    <div class="price-person__text">{{ priceOnePerson }}₽/Чел</div>
-    <div class="info__component format-event__text">
-      <span class="info__component__text">Формат:</span>
-      <span class="text-data">{{ this.valueService.getSelectedValue() }}</span>
+      <input
+        style="display: none"
+        type="radio"
+        name="event"
+        id="Гастрономический ужин"
+        value="{{ events[1].name }}"
+        formControlName="event"
+      />
+      <label
+        class="format-event__button button-disable"
+        for="Гастрономический ужин"
+        ><span class="format-event__button-text button-disable__text">{{
+          events[1].name
+        }}</span></label
+      >
+      <input
+        style="display: none"
+        type="radio"
+        name="event"
+        id="Банкет"
+        value="{{ events[2].name }}"
+        formControlName="event"
+      />
+      <label class="format-event__button button-disable" for="Банкет"
+        ><span class="format-event__button-text button-disable__text">{{
+          events[2].name
+        }}</span></label
+      >
+    </ng-container>
+    <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+      >Обязательное поле</span
+    >
+    <div
+      [ngClass]="
+        isShowTextDownForm
+          ? 'page-form__input not-valid-form'
+          : 'page-form__input'
+      "
+    >
+      <span class="count-people__text-form"
+        >Количество гостей: {{ eventForm.get("countPeoples")?.value }}
+      </span>
     </div>
-    <div class="info__component count-people-event__text">
-      <span class="info__component__text">Количество гостей: </span
-      ><span class="text-data">{{ eventForm.get("countPeoples")?.value }}</span>
+    <input
+      type="range"
+      min="10"
+      max="100"
+      step="1"
+      id="peopleRange"
+      placeholder="Количество гостей:"
+      class="count-people__input"
+      formControlName="countPeoples"
+    />
+    <span class="text-down__range">От 10 человек</span>
+    <span class="text-down__range" style="margin-left: 458px"
+      >До 100 человек</span
+    >
+    <input
+      style="margin-top: 19px; padding-left: 15px; padding-right: 15px"
+      placeholder="Дата мероприятия:"
+      [ngClass]="
+        isShowTextDownForm
+          ? 'page-form__input not-valid-form'
+          : 'page-form__input'
+      "
+      type="date"
+      formControlName="dateEvent"
+    />
+    <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+      >Обязательное поле</span
+    >
+    <div style="margin-top: 19px" class="page-form__input">
+      <input
+        placeholder="Дополнительные услуги:"
+        class="service__input"
+        type="text"
+      />
+      <select class="service-select" formControlName="additionalService">
+        <ng-container *ngIf="service$ | async as services">
+          <option value="{{ services[4].price }}">
+            {{ services[4].name }}
+          </option>
+          <option value="{{ services[3].price }}">
+            {{ services[3].name }}
+          </option>
+          <option value="{{ services[0].price }}">
+            {{ services[0].name }}
+          </option>
+          <option value="{{ services[1].price }}">
+            {{ services[1].name }}
+          </option>
+          <option value="{{ services[2].price }}">
+            {{ services[2].name }}
+          </option>
+        </ng-container>
+      </select>
+
+      <!--    Оставляю стиль этой формы на потом, пока займусь более важными делами-->
     </div>
-    <div class="info__component date-event__text">
-      <span class="info__component__text">Дата: </span
-      ><span class="text-data">{{ eventForm.get("dateEvent")?.value }}</span>
+    <input
+      style="margin-top: 19px"
+      class="page-form__input"
+      type="text"
+      placeholder="Напишите пожелания по меню"
+      formControlName="desiredMenu"
+    />
+    <div class="application__component">
+      <button class="button-continue">
+        <span (click)="isValidForm()" class="button-continue__text"
+        >Продолжить</span
+        >
+      </button>
+      <span class="text-processing-condition">
+        Нажимая кнопку вы соглашаетесь с
+        <span class="text-processing-condition__politic-conditions"
+        >условиями обработки персональных данных </span
+        >и
+        <span class="text-processing-condition__politic-conditions">
+          политикой конфиденциальности</span
+        >
+      </span>
+    </div>
+    <div class="event-data__component">
+      <span class="event-data__text">Примерная стоимость</span>
+      <div class="price-event__text">{{ priceEvent }}₽</div>
+      <div class="price-person__text">{{ event?.priceOnePerson }}₽/Чел</div>
+      <div class="info__component format-event__text">
+        <span class="info__component__text"
+          >Формат:{{ eventForm.controls.event.value }}</span
+        >
+        <span class="text-data"></span>
+      </div>
+      <div class="info__component count-people-event__text">
+        <span class="info__component__text"
+          >Количество гостей: {{ eventForm.controls.countPeoples.value }}</span
+        ><span class="text-data"></span>
+      </div>
+      <div class="info__component date-event__text">
+        <span class="info__component__text"
+          >Дата: {{ eventForm.controls.dateEvent.value }}</span
+        ><span class="text-data"></span>
+      </div>
     </div>
   </div>
 </div>
