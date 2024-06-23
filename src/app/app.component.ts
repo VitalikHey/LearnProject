@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Steps } from './component/data-type/data-type';
-import {BoolShowPageService} from "./component/service/bool-show-page.service";
+import { BoolShowPageService } from './component/service/bool-show-page.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,6 @@ export class AppComponent {
   protected readonly Steps = Steps;
 
   constructor(protected isShowComponentService: BoolShowPageService) {
-    this.isShowComponent = isShowComponentService.getIsShowComponent()
+    this.isShowComponent = isShowComponentService.getIsShowComponent();
   }
-
 }

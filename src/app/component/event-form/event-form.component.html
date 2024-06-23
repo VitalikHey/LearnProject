@@ -92,12 +92,12 @@
         class="service__input"
         type="text"
       />
-      <select class="service-select" formControlName="additionalService">
-        <ng-container *ngIf="service$ | async as services">
-          <option value="{{ services[4].price }}">
-            {{ services[4].name }}
-          </option>
-          <option value="{{ services[3].price }}">
+      <ng-container *ngIf="service$ | async as services">
+      <select [ngModel]="eventForm.controls.additionalService.value" [value]="services[4].price" class="service-select" formControlName="additionalService">
+        <option value="{{ services[4].price }}">
+          {{ services[4].name }}
+        </option>
+        <option value="{{ services[3].price }}">
             {{ services[3].name }}
           </option>
           <option value="{{ services[0].price }}">
@@ -109,9 +109,8 @@
           <option value="{{ services[2].price }}">
             {{ services[2].name }}
           </option>
-        </ng-container>
       </select>
-
+      </ng-container>
       <!--    Оставляю стиль этой формы на потом, пока займусь более важными делами-->
     </div>
     <input
@@ -124,13 +123,13 @@
     <div class="application__component">
       <button class="button-continue">
         <span (click)="isValidForm()" class="button-continue__text"
-        >Продолжить</span
+          >Продолжить</span
         >
       </button>
       <span class="text-processing-condition">
         Нажимая кнопку вы соглашаетесь с
         <span class="text-processing-condition__politic-conditions"
-        >условиями обработки персональных данных </span
+          >условиями обработки персональных данных </span
         >и
         <span class="text-processing-condition__politic-conditions">
           политикой конфиденциальности</span

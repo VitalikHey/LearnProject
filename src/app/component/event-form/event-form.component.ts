@@ -48,8 +48,7 @@ export class EventFormComponent implements OnInit {
       );
       if (
         this.event &&
-        this.eventForm.controls.countPeoples.value &&
-        this.eventForm.controls.additionalService.value
+        this.eventForm.controls.countPeoples.value
       ) {
         this.priceEvent =
           this.event.priceOnePerson *
@@ -64,7 +63,7 @@ export class EventFormComponent implements OnInit {
       this.isShowTextDownForm = true;
       alert('Проверьте, выбран ли формат мероприятия!');
     } else {
-      this.isShowContact.setIsShowComponent(1)
+      this.isShowContact.setIsShowComponent(1);
     }
   }
 }
