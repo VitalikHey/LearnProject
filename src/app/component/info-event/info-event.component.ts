@@ -6,10 +6,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./info-event.component.scss'],
 })
 export class InfoEventComponent {
-  @Input() public priceEventChild: number;
-  @Input() public priceOnePersonChild: number;
+  @Input() public priceEvent: number;
+  @Input() public priceOnePerson?: number;
+  @Input() public formatEvent: string | null;
+  @Input() public countPerson: number | null;
+  @Input() public dateEvent: Date | null;
+
   constructor() {
-    this.priceEventChild = 0;
-    this.priceOnePersonChild = 0;
+    this.priceEvent = 0;
+    this.priceOnePerson = 0;
+    this.formatEvent = '';
+    this.countPerson = 0;
+    this.dateEvent = new Date();
   }
 }

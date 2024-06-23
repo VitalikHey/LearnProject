@@ -93,11 +93,16 @@
         type="text"
       />
       <ng-container *ngIf="service$ | async as services">
-      <select [ngModel]="eventForm.controls.additionalService.value" [value]="services[4].price" class="service-select" formControlName="additionalService">
-        <option value="{{ services[4].price }}">
-          {{ services[4].name }}
-        </option>
-        <option value="{{ services[3].price }}">
+        <select
+          [ngModel]="eventForm.controls.additionalService.value"
+          [value]="services[4].price"
+          class="service-select"
+          formControlName="additionalService"
+        >
+          <option value="{{ services[4].price }}">
+            {{ services[4].name }}
+          </option>
+          <option value="{{ services[3].price }}">
             {{ services[3].name }}
           </option>
           <option value="{{ services[0].price }}">
@@ -109,7 +114,7 @@
           <option value="{{ services[2].price }}">
             {{ services[2].name }}
           </option>
-      </select>
+        </select>
       </ng-container>
       <!--    Оставляю стиль этой формы на потом, пока займусь более важными делами-->
     </div>
@@ -136,26 +141,13 @@
         >
       </span>
     </div>
-    <div class="event-data__component">
-      <span class="event-data__text">Примерная стоимость</span>
-      <div class="price-event__text">{{ priceEvent }}₽</div>
-      <div class="price-person__text">{{ event?.priceOnePerson }}₽/Чел</div>
-      <div class="info__component format-event__text">
-        <span class="info__component__text"
-          >Формат:{{ eventForm.controls.event.value }}</span
-        >
-        <span class="text-data"></span>
-      </div>
-      <div class="info__component count-people-event__text">
-        <span class="info__component__text"
-          >Количество гостей: {{ eventForm.controls.countPeoples.value }}</span
-        ><span class="text-data"></span>
-      </div>
-      <div class="info__component date-event__text">
-        <span class="info__component__text"
-          >Дата: {{ eventForm.controls.dateEvent.value }}</span
-        ><span class="text-data"></span>
-      </div>
-    </div>
+    <app-info-event
+            [priceEvent]="priceEvent"
+            [priceOnePerson]="event?.priceOnePerson"
+            [formatEvent]="eventForm.controls.event.value"
+            [countPerson]="eventForm.controls.countPeoples.value"
+            [dateEvent]="eventForm.controls.dateEvent.value"
+    >
+    </app-info-event>
   </div>
 </div>

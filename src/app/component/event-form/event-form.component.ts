@@ -46,10 +46,7 @@ export class EventFormComponent implements OnInit {
         (item: Events): boolean =>
           item.name === this.eventForm.controls.event.value,
       );
-      if (
-        this.event &&
-        this.eventForm.controls.countPeoples.value
-      ) {
+      if (this.event && this.eventForm.controls.countPeoples.value) {
         this.priceEvent =
           this.event.priceOnePerson *
             this.eventForm.controls.countPeoples.value +
