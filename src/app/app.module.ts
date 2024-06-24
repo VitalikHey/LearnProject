@@ -10,7 +10,6 @@ import { NgOptimizedImage } from '@angular/common';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
 import { GetApiDataService } from './component/service/get-api-data.service';
 import { EventFormComponent } from './component/event-form/event-form.component';
-import { EventComponent } from './component/event/event.component';
 import { HeaderEventComponent } from './component/header-event/header-event.component';
 import { BoolShowPageService } from './component/service/bool-show-page.service';
 import { PhoneMaskDirective } from './directive/tel-mask.directive';
@@ -23,7 +22,6 @@ import { InfoEventComponent } from './component/info-event/info-event.component'
     HeaderComponent,
     ContactFormComponent,
     EventFormComponent,
-    EventComponent,
     HeaderEventComponent,
     InfoEventComponent,
   ],

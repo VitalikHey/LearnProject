@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Steps } from './component/data-type/data-type';
-import { BoolShowPageService } from './component/service/bool-show-page.service';
+import {Steps} from "./component/data-type/data-type";
+import {BoolShowPageService} from "./component/service/bool-show-page.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   public title: string = 'event-task';
