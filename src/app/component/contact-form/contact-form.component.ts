@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ContactFormType } from '../data-type/data-type';
 
 @Component({
   selector: 'app-contact-form',
@@ -10,11 +11,12 @@ export class ContactFormComponent {
   protected notValidForm: string = 'page-form__input';
   protected isShowTextDownForm: boolean = false;
 
-  protected readonly formContact: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
-    number: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.email),
-  });
+  protected readonly formContact: FormGroup<ContactFormType> =
+    new FormGroup<ContactFormType>({
+      name: new FormControl(null, Validators.required),
+      number: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.email),
+    });
 
   protected handleValueContact(): void {
     if (this.formContact.valid) {

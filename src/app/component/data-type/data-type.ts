@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export enum Steps {
+export enum steps {
   Event = 0,
   Contact = 1,
 }
@@ -33,4 +33,10 @@ export interface EventFormType {
   additionalService: FormControl<number | null>;
   desiredMenu: FormControl<string | null>;
   event: FormControl<string | null>;
+}
+
+export interface ContactFormType {
+  name: FormControl<string | null>;
+  number: FormControl<number | null>;
+  email: FormControl<string | null>;
 }

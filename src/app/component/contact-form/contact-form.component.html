@@ -3,18 +3,18 @@
     placeholder="Ваше имя"
     type="text"
     [ngClass]="notValidForm"
-    formControlName="name"
+    [formControl]="formContact.controls.name"
   />
   <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
     >Обязательное поле</span
   >
   <input
-    [ngStyle]="{ 'margin-top': isShowTextDownForm ? '4px' : '19px' }"
     placeholder="Мобильный телефон"
     type="tel"
-    [ngClass]="notValidForm"
-    formControlName="number"
     appPhoneMask
+    [ngStyle]="{ 'margin-top': isShowTextDownForm ? '4px' : '19px' }"
+    [ngClass]="notValidForm"
+    [formControl]="formContact.controls.number"
   />
   <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
     >Обязательное поле</span
@@ -24,13 +24,13 @@
     type="email"
     [ngClass]="notValidForm"
     [ngStyle]="{ 'margin-top': isShowTextDownForm ? '10px' : '19px' }"
-    formControlName="email"
+    [formControl]="formContact.controls.email"
   />
   <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
     >Проверьте корректность почтового адреса</span
   >
   <div class="application__component">
-    <button (click)="handleValueContact()" class="button-continue">
+    <button class="button-continue" (click)="handleValueContact()">
       <span class="button-continue__text">Отправить заявку</span>
     </button>
     <span class="text-processing-condition">

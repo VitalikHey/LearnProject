@@ -8,10 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './component/header/header.component';
 import { NgOptimizedImage } from '@angular/common';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
-import { GetApiDataService } from './component/service/get-api-data.service';
+import { GetApiDataEvent } from './component/service/get-api-data.event';
 import { EventFormComponent } from './component/event-form/event-form.component';
 import { HeaderEventComponent } from './component/header-event/header-event.component';
-import { BoolShowPageService } from './component/service/bool-show-page.service';
 import { PhoneMaskDirective } from './directive/tel-mask.directive';
 import { InfoEventComponent } from './component/info-event/info-event.component';
 
@@ -33,7 +32,7 @@ import { InfoEventComponent } from './component/info-event/info-event.component'
     NgOptimizedImage,
     ReactiveFormsModule,
   ],
-  providers: [GetApiDataService, BoolShowPageService, EventFormComponent],
+  providers: [GetApiDataEvent, EventFormComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,9 +1,16 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { EventFormType, Events, Service } from '../data-type/data-type';
-import { GetApiDataService } from '../service/get-api-data.service';
-import { BoolShowPageService } from '../service/bool-show-page.service';
+import { EventFormType, Events, Service, steps } from '../data-type/data-type';
+import { GetApiDataEvent } from '../service/get-api-data.event';
+import { GetApiAdditionalService } from '../service/get-api-additional.service';
 
 @Component({
   selector: 'app-event-form',
@@ -12,18 +19,20 @@ import { BoolShowPageService } from '../service/bool-show-page.service';
 })
 @Input()
 export class EventFormComponent implements OnInit {
+  @Output() public nextStep: EventEmitter<number> = new EventEmitter<number>();
   protected events$: Observable<Events[]> =
-    inject(GetApiDataService).getApiEvent();
-  protected service$: Observable<Service[]> =
-    inject(GetApiDataService).getApiService();
+    inject(GetApiDataEvent).getApiEvent();
+  protected service$: Observable<Service[]> = inject(
+    GetApiAdditionalService,
+  ).getApiService();
 
   protected isShowTextDownForm: boolean = false;
   public priceEvent: number = 0;
-  protected event: Events | undefined;
+  public event: Events | undefined;
   protected arrayEvent: Array<Events> = [];
   protected valueService: Array<Service> = [];
 
-  protected readonly eventForm: FormGroup<EventFormType> =
+  public readonly eventForm: FormGroup<EventFormType> =
     new FormGroup<EventFormType>({
       countPeoples: new FormControl(0, Validators.required),
       dateEvent: new FormControl(null, Validators.required),
@@ -32,8 +41,6 @@ export class EventFormComponent implements OnInit {
       event: new FormControl(null, Validators.required),
     });
 
-  constructor(public isShowContact: BoolShowPageService) {}
-
   public ngOnInit(): void {
     this.events$.subscribe((value: Events[]): void => {
       this.arrayEvent = value;
@@ -41,7 +48,7 @@ export class EventFormComponent implements OnInit {
     this.service$.subscribe((value: Service[]): void => {
       this.valueService = value;
     });
-    this.eventForm.valueChanges.subscribe((): void => {
+    this.eventForm.controls.event.valueChanges.subscribe((): void => {
       this.event = this.arrayEvent.find(
         (item: Events): boolean =>
           item.name === this.eventForm.controls.event.value,
@@ -60,7 +67,8 @@ export class EventFormComponent implements OnInit {
       this.isShowTextDownForm = true;
       alert('Проверьте, выбран ли формат мероприятия!');
     } else {
-      this.isShowContact.setIsShowComponent(1);
+      this.nextStep.emit(steps.Contact);
+      this.nextStep.subscribe((value: number) => console.log(value));
     }
   }
 }

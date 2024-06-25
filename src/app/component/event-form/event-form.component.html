@@ -8,7 +8,7 @@
         name="event"
         id="Фуршет"
         value="{{ events[0].name }}"
-        formControlName="event"
+        [formControl]="eventForm.controls.event"
       />
       <label class="format-event__button button-disable" for="Фуршет"
         ><span class="format-event__button-text button-disable__text">{{
@@ -21,7 +21,7 @@
         name="event"
         id="Гастрономический ужин"
         value="{{ events[1].name }}"
-        formControlName="event"
+        [formControl]="eventForm.controls.event"
       />
       <label
         class="format-event__button button-disable"
@@ -36,7 +36,7 @@
         name="event"
         id="Банкет"
         value="{{ events[2].name }}"
-        formControlName="event"
+        [formControl]="eventForm.controls.event"
       />
       <label class="format-event__button button-disable" for="Банкет"
         ><span class="format-event__button-text button-disable__text">{{
@@ -66,7 +66,7 @@
       id="peopleRange"
       placeholder="Количество гостей:"
       class="count-people__input"
-      formControlName="countPeoples"
+      [formControl]="eventForm.controls.countPeoples"
     />
     <span class="text-down__range">От 10 человек</span>
     <span class="text-down__range" style="margin-left: 458px"
@@ -75,13 +75,13 @@
     <input
       style="margin-top: 19px; padding-left: 15px; padding-right: 15px"
       placeholder="Дата мероприятия:"
+      type="date"
+      [formControl]="eventForm.controls.dateEvent"
       [ngClass]="
         isShowTextDownForm
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
-      type="date"
-      formControlName="dateEvent"
     />
     <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
       >Обязательное поле</span
@@ -94,10 +94,10 @@
       />
       <ng-container *ngIf="service$ | async as services">
         <select
-          [ngModel]="eventForm.controls.additionalService.value"
-          [value]="services[4].price"
           class="service-select"
-          formControlName="additionalService"
+          [value]="services[4].price"
+          [formControl]="eventForm.controls.additionalService"
+          [ngModel]="eventForm.controls.additionalService.value"
         >
           <option value="{{ services[4].price }}">
             {{ services[4].name }}
@@ -123,11 +123,11 @@
       class="page-form__input"
       type="text"
       placeholder="Напишите пожелания по меню"
-      formControlName="desiredMenu"
+      [formControl]="eventForm.controls.desiredMenu"
     />
     <div class="application__component">
       <button class="button-continue">
-        <span (click)="isValidForm()" class="button-continue__text"
+        <span class="button-continue__text" (click)="isValidForm()"
           >Продолжить</span
         >
       </button>
@@ -142,11 +142,11 @@
       </span>
     </div>
     <app-info-event
-            [priceEvent]="priceEvent"
-            [priceOnePerson]="event?.priceOnePerson"
-            [formatEvent]="eventForm.controls.event.value"
-            [countPerson]="eventForm.controls.countPeoples.value"
-            [dateEvent]="eventForm.controls.dateEvent.value"
+      [priceEvent]="priceEvent"
+      [priceOnePerson]="event?.priceOnePerson"
+      [formatEvent]="eventForm.controls.event.value"
+      [countPerson]="eventForm.controls.countPeoples.value"
+      [dateEvent]="eventForm.controls.dateEvent.value"
     >
     </app-info-event>
   </div>

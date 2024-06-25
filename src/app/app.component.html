@@ -1,10 +1,18 @@
-<ng-container [ngSwitch]="isShowComponentService.getIsShowComponent()">
-  <ng-container *ngSwitchCase="Steps.Event">
+<ng-container [ngSwitch]="isShowComponent">
+  <ng-container *ngSwitchCase="steps.Event">
     <app-header-event></app-header-event>
-    <app-event-form></app-event-form>
+    <app-event-form (nextStep)="nextStep($event)"></app-event-form>
   </ng-container>
-  <ng-container *ngSwitchCase="Steps.Contact">
+  <ng-container *ngSwitchCase="steps.Contact">
     <app-header></app-header>
     <app-contact-form></app-contact-form>
+    <app-info-event
+      [priceEvent]="eventFormData.priceEvent"
+      [priceOnePerson]="eventFormData.event?.priceOnePerson"
+      [formatEvent]="eventFormData.eventForm.controls.event.value"
+      [countPerson]="eventFormData.eventForm.controls.countPeoples.value"
+      [dateEvent]="eventFormData.eventForm.controls.dateEvent.value"
+    >
+    </app-info-event>
   </ng-container>
 </ng-container>
