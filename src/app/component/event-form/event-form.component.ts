@@ -6,7 +6,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {combineLatest, debounceTime, distinctUntilChanged, Observable, Subscription} from 'rxjs';
+import {combineLatest, distinctUntilChanged, Observable, Subscription} from 'rxjs';
 import {EventFormType, Events, Service, steps} from '../data-type/data-type';
 import {GetApiDataEvent} from '../service/get-api-data.event';
 import {GetApiAdditionalService} from '../service/get-api-additional.service';
@@ -25,6 +25,7 @@ export class EventFormComponent implements OnDestroy {
     GetApiAdditionalService,
   ).getApiService();
 
+  protected initialPriceOnePerson: number = 0
   public priceEvent: number = 0;
   public event: Events | undefined;
   protected arrayEvent: Array<Events> = [];
@@ -52,7 +53,6 @@ export class EventFormComponent implements OnDestroy {
     this.eventForm.controls.countPeoples.valueChanges,
     this.eventForm.controls.additionalService.valueChanges
   ]).pipe(
-    debounceTime(300),
     distinctUntilChanged()
   );
 

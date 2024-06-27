@@ -2,47 +2,21 @@
   <div class="event-form__component" [formGroup]="eventForm">
     <span class="format-event__text">Выберите формат мероприятия:</span>
     <ng-container *ngIf="events$ | async as events">
-      <input
-        style="display: none"
-        type="radio"
-        name="event"
-        id="Фуршет"
-        value="{{ events[0].name }}"
-        [formControl]="eventForm.controls.event"
-      />
-      <label class="format-event__button button-disable" for="Фуршет"
+      <ng-container *ngFor="let event of events">
+        <input
+          style="display: none"
+          type="radio"
+          name="event"
+          id="{{event.name}}"
+          value="{{ event.name }}"
+          [formControl]="eventForm.controls.event"
+        />
+        <label class="format-event__button button-disable" for="{{event.name}}"
         ><span class="format-event__button-text button-disable__text">{{
-          events[0].name
-        }}</span></label
-      >
-      <input
-        style="display: none"
-        type="radio"
-        name="event"
-        id="Гастрономический ужин"
-        value="{{ events[1].name }}"
-        [formControl]="eventForm.controls.event"
-      />
-      <label
-        class="format-event__button button-disable"
-        for="Гастрономический ужин"
-        ><span class="format-event__button-text button-disable__text">{{
-          events[1].name
-        }}</span></label
-      >
-      <input
-        style="display: none"
-        type="radio"
-        name="event"
-        id="Банкет"
-        value="{{ events[2].name }}"
-        [formControl]="eventForm.controls.event"
-      />
-      <label class="format-event__button button-disable" for="Банкет"
-        ><span class="format-event__button-text button-disable__text">{{
-          events[2].name
-        }}</span></label
-      >
+          event.name
+          }}</span></label
+        >
+      </ng-container>
     </ng-container>
     <span *ngIf="eventForm.controls.event.touched && eventForm.controls.event.invalid" class="text-not-valid__form"
       >Обязательное поле</span
@@ -95,24 +69,12 @@
       <ng-container *ngIf="service$ | async as services">
         <select
           class="service-select"
-          [value]="services[4].price"
+          [value]="initialPriceOnePerson"
           [formControl]="eventForm.controls.additionalService"
           [ngModel]="eventForm.controls.additionalService.value"
         >
-          <option value="{{ services[4].price }}">
-            {{ services[4].name }}
-          </option>
-          <option value="{{ services[3].price }}">
-            {{ services[3].name }}
-          </option>
-          <option value="{{ services[0].price }}">
-            {{ services[0].name }}
-          </option>
-          <option value="{{ services[1].price }}">
-            {{ services[1].name }}
-          </option>
-          <option value="{{ services[2].price }}">
-            {{ services[2].name }}
+          <option value="{{service.price}}" *ngFor="let service of services">
+              {{service.name}}
           </option>
         </select>
       </ng-container>
