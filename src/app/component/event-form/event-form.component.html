@@ -1,23 +1,25 @@
 <div class="format-event__component">
   <div class="event-form__component" [formGroup]="eventForm">
-    <span class="format-event__text">Выберите формат мероприятия:</span>
-    <ng-container *ngIf="events$ | async as events">
-      <ng-container *ngFor="let event of events">
-        <input
-          style="display: none"
-          type="radio"
-          name="event"
-          id="{{event.name}}"
-          value="{{ event.name }}"
-          [formControl]="eventForm.controls.event"
-        />
-        <label class="format-event__button button-disable" for="{{event.name}}"
-        ><span class="format-event__button-text button-disable__text">{{
-          event.name
-          }}</span></label
-        >
+    <div class="radio-buttons-place">
+      <span class="format-event__text">Выберите формат мероприятия:</span>
+      <ng-container *ngIf="events$ | async as events">
+        <ng-container *ngFor="let event of events">
+          <input
+            style="display: none"
+            type="radio"
+            name="event"
+            id="{{event.name}}"
+            value="{{ event.name }}"
+            [formControl]="eventForm.controls.event"
+          />
+          <label class="format-event__button button-disable" for="{{event.name}}"
+          ><span class="format-event__button-text button-disable__text">{{
+            event.name
+            }}</span></label
+          >
+        </ng-container>
       </ng-container>
-    </ng-container>
+    </div>
     <span *ngIf="eventForm.controls.event.touched && eventForm.controls.event.invalid" class="text-not-valid__form"
       >Обязательное поле</span
     >
