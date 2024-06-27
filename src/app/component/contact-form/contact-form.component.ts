@@ -8,7 +8,6 @@ import { ContactFormType } from '../data-type/data-type';
   styleUrls: ['./contact-form.component.scss'],
 })
 export class ContactFormComponent {
-  protected notValidForm: string = 'page-form__input';
   protected isShowTextDownForm: boolean = false;
 
   protected readonly formContact: FormGroup<ContactFormType> =
@@ -20,12 +19,10 @@ export class ContactFormComponent {
 
   protected handleValueContact(): void {
     if (this.formContact.valid) {
-      this.notValidForm = 'page-form__input';
       this.isShowTextDownForm = false;
       console.log(this.formContact.value);
     } else {
       this.isShowTextDownForm = true;
-      this.notValidForm = 'page-form__input not-valid-form';
     }
   }
 }

@@ -44,18 +44,18 @@
         }}</span></label
       >
     </ng-container>
-    <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+    <span *ngIf="eventForm.controls.event.touched && eventForm.controls.event.invalid" class="text-not-valid__form"
       >Обязательное поле</span
     >
     <div
       [ngClass]="
-        isShowTextDownForm
+        eventForm.controls.countPeoples.touched && eventForm.controls.countPeoples.invalid
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
     >
       <span class="count-people__text-form"
-        >Количество гостей: {{ eventForm.get("countPeoples")?.value }}
+        >Количество гостей: {{ eventForm.controls.countPeoples.value }}
       </span>
     </div>
     <input
@@ -78,12 +78,12 @@
       type="date"
       [formControl]="eventForm.controls.dateEvent"
       [ngClass]="
-        isShowTextDownForm
+        eventForm.controls.dateEvent.touched && eventForm.controls.dateEvent.invalid
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
     />
-    <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+    <span *ngIf="eventForm.controls.dateEvent.touched && eventForm.controls.dateEvent.invalid" class="text-not-valid__form"
       >Обязательное поле</span
     >
     <div style="margin-top: 19px" class="page-form__input">

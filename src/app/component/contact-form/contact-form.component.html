@@ -2,7 +2,11 @@
   <input
     placeholder="Ваше имя"
     type="text"
-    [ngClass]="notValidForm"
+    [ngClass]="
+      isShowTextDownForm
+        ? 'page-form__input not-valid-form'
+        : 'page-form__input'
+    "
     [formControl]="formContact.controls.name"
   />
   <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
@@ -13,7 +17,11 @@
     type="tel"
     appPhoneMask
     [ngStyle]="{ 'margin-top': isShowTextDownForm ? '4px' : '19px' }"
-    [ngClass]="notValidForm"
+    [ngClass]="
+      isShowTextDownForm
+        ? 'page-form__input not-valid-form'
+        : 'page-form__input'
+    "
     [formControl]="formContact.controls.number"
   />
   <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
@@ -22,7 +30,11 @@
   <input
     placeholder="Электронная почта"
     type="email"
-    [ngClass]="notValidForm"
+    [ngClass]="
+      isShowTextDownForm
+        ? 'page-form__input not-valid-form'
+        : 'page-form__input'
+    "
     [ngStyle]="{ 'margin-top': isShowTextDownForm ? '10px' : '19px' }"
     [formControl]="formContact.controls.email"
   />
