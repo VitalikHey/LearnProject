@@ -18,7 +18,7 @@ import {
   Observable, Subject,
   Subscription, takeUntil,
 } from 'rxjs';
-import {EventFormType, Events, EventType, Service} from '../data-type/data-type';
+import {EventFormType, eventFormTypeTest, Events, Service} from '../data-type/data-type';
 import { GetApiDataEvent } from '../service/get-api-data.event';
 import { GetApiAdditionalService } from '../service/get-api-additional.service';
 
@@ -51,7 +51,7 @@ export class EventFormComponent
   protected valueService: Array<Service> = [];
   private destroy$: Subject<void> = new Subject<void>();
 
-  protected onChange?: (value: EventType) => void
+  protected onChange?: (value: eventFormTypeTest) => void
   protected onTouched?: () => void
 
   public writeValue(value: EventFormType): void {
@@ -66,7 +66,7 @@ export class EventFormComponent
     }
   }
 
-  public registerOnChange(fn: (value: EventType) => void): void {
+  public registerOnChange(fn: (value: eventFormTypeTest) => void): void {
     this.onChange = fn;
   }
 
@@ -113,7 +113,7 @@ export class EventFormComponent
               Number(additionalService);
           }
           if (this.onChange && this.event) {
-            this.onChange([this.priceEvent, this.eventForm.controls.dateEvent.value, this.event?.priceOnePerson, this.eventForm.controls.event.value, this.eventForm.controls.countPeoples.value]);
+            this.onChange(this.eventForm.getRawValue());
           }
         },
       );

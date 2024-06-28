@@ -12,11 +12,11 @@
     <app-application-button (click)="nextStep()"></app-application-button>
   </ng-container>
 </ng-container>
-<!--<app-info-event-->
-<!--  [priceEvent]="eventFormGroup.controls.eventForm.value"-->
-<!--  [priceOnePerson]="eventFormData.event?.priceOnePerson"-->
-<!--  [formatEvent]="eventFormData.eventForm.controls.event.value"-->
-<!--  [countPerson]="eventFormData.eventForm.controls.countPeoples.value"-->
-<!--  [dateEvent]="eventFormData.eventForm.controls.dateEvent.value"-->
-<!--&gt;-->
-<!--</app-info-event>-->
+<app-info-event
+  [priceEvent]="10"
+  [priceOnePerson]="20"
+  [formatEvent]="eventFormGroup.controls.eventForm.value?.event"
+  [countPerson]="eventFormGroup.controls.eventForm.value?.countPeoples"
+  [dateEvent]="eventFormGroup.controls.eventForm.value?.dateEvent"
+>
+</app-info-event>

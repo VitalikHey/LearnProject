@@ -35,9 +35,16 @@ export type EventType = [
     number | null,
 ];
 
+export interface eventFormTypeTest {
+  countPeoples: number | null;
+  dateEvent: Date | null;
+  additionalService: number | null;
+  desiredMenu: string | null;
+  event: string | null;
+}
 
 export interface EventForm {
-  eventForm: FormControl<EventType | null>;
+  eventForm: FormControl<eventFormTypeTest | null>;
 }
 
 export interface EventFormType {
