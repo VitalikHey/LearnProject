@@ -1,0 +1,114 @@
+<div class="format-event__component">
+  <div class="event-form__component" [formGroup]="eventForm">
+    <div class="radio-buttons-place">
+      <span class="format-event__text">Выберите формат мероприятия:</span>
+      <ng-container *ngIf="events$ | async as events">
+        <ng-container *ngFor="let event of events">
+          <input
+            style="display: none"
+            type="radio"
+            name="event"
+            id="{{ event.name }}"
+            value="{{ event.name }}"
+            [formControl]="eventForm.controls.event"
+          />
+          <label
+            class="format-event__button button-disable"
+            for="{{ event.name }}"
+            ><span class="format-event__button-text button-disable__text">{{
+              event.name
+            }}</span></label
+          >
+        </ng-container>
+      </ng-container>
+    </div>
+    <span
+      *ngIf="
+        eventForm.controls.event.touched && eventForm.controls.event.invalid
+      "
+      class="text-not-valid__form"
+      >Обязательное поле</span
+    >
+    <div
+      [ngClass]="
+        eventForm.controls.countPeoples.touched &&
+        eventForm.controls.countPeoples.invalid
+          ? 'page-form__input not-valid-form'
+          : 'page-form__input'
+      "
+    >
+      <span class="count-people__text-form"
+        >Количество гостей: {{ eventForm.controls.countPeoples.value }}
+      </span>
+    </div>
+    <input
+      type="range"
+      min="10"
+      max="100"
+      step="1"
+      id="peopleRange"
+      placeholder="Количество гостей:"
+      class="count-people__input"
+      [formControl]="eventForm.controls.countPeoples"
+    />
+    <span class="text-down__range">От 10 человек</span>
+    <span class="text-down__range" style="margin-left: 458px"
+      >До 100 человек</span
+    >
+    <input
+      style="margin-top: 19px; padding-left: 15px; padding-right: 15px"
+      placeholder="Дата мероприятия:"
+      type="date"
+      [formControl]="eventForm.controls.dateEvent"
+      [ngClass]="
+        eventForm.controls.dateEvent.touched &&
+        eventForm.controls.dateEvent.invalid
+          ? 'page-form__input not-valid-form'
+          : 'page-form__input'
+      "
+    />
+    <span
+      *ngIf="
+        eventForm.controls.dateEvent.touched &&
+        eventForm.controls.dateEvent.invalid
+      "
+      class="text-not-valid__form"
+      >Обязательное поле</span
+    >
+    <div style="margin-top: 19px" class="page-form__input">
+      <input
+        placeholder="Дополнительные услуги:"
+        class="service__input"
+        type="text"
+      />
+      <ng-container *ngIf="service$ | async as services">
+        <select
+          class="service-select"
+          [value]="initialPriceOnePerson"
+          [formControl]="eventForm.controls.additionalService"
+          [ngModel]="eventForm.controls.additionalService.value"
+        >
+          <option value="{{ service.price }}" *ngFor="let service of services">
+            {{ service.name }}
+          </option>
+        </select>
+      </ng-container>
+      <!--    Оставляю стиль этой формы на потом, пока займусь более важными делами-->
+    </div>
+    <input
+      style="margin-top: 19px"
+      class="page-form__input"
+      type="text"
+      placeholder="Напишите пожелания по меню"
+      [formControl]="eventForm.controls.desiredMenu"
+    />
+    <app-info-event
+      [priceEvent]="priceEvent"
+      [priceOnePerson]="event?.priceOnePerson"
+      [formatEvent]="eventForm.controls.event.value"
+      [countPerson]="eventForm.controls.countPeoples.value"
+      [dateEvent]="eventForm.controls.dateEvent.value"
+    >
+    </app-info-event>
+  </div>
+</div>

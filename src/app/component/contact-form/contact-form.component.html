@@ -1,0 +1,44 @@
+<div class="contact-form__component" [formGroup]="formContact">
+  <input
+    placeholder="Ваше имя"
+    type="text"
+    [ngClass]="
+      isShowTextDownForm
+        ? 'page-form__input not-valid-form'
+        : 'page-form__input'
+    "
+    [formControl]="formContact.controls.name"
+  />
+  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+    >Обязательное поле</span
+  >
+  <input
+    placeholder="Мобильный телефон"
+    type="tel"
+    appPhoneMask
+    [ngStyle]="{ 'margin-top': isShowTextDownForm ? '4px' : '19px' }"
+    [ngClass]="
+      isShowTextDownForm
+        ? 'page-form__input not-valid-form'
+        : 'page-form__input'
+    "
+    [formControl]="formContact.controls.number"
+  />
+  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+    >Обязательное поле</span
+  >
+  <input
+    placeholder="Электронная почта"
+    type="email"
+    [ngClass]="
+      isShowTextDownForm
+        ? 'page-form__input not-valid-form'
+        : 'page-form__input'
+    "
+    [ngStyle]="{ 'margin-top': isShowTextDownForm ? '10px' : '19px' }"
+    [formControl]="formContact.controls.email"
+  />
+  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+    >Проверьте корректность почтового адреса</span
+  >
+</div>
