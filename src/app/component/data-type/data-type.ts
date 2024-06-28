@@ -27,6 +27,19 @@ export class Service {
   }
 }
 
+export type EventType = [
+    number | null,
+    Date | null,
+    number | null,
+    string | null,
+    number | null,
+];
+
+
+export interface EventForm {
+  eventForm: FormControl<EventType | null>;
+}
+
 export interface EventFormType {
   countPeoples: FormControl<number | null>;
   dateEvent: FormControl<Date | null>;

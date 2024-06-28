@@ -8,24 +8,31 @@
             style="display: none"
             type="radio"
             name="event"
-            id="{{event.name}}"
+            id="{{ event.name }}"
             value="{{ event.name }}"
             [formControl]="eventForm.controls.event"
           />
-          <label class="format-event__button button-disable" for="{{event.name}}"
-          ><span class="format-event__button-text button-disable__text">{{
-            event.name
+          <label
+            class="format-event__button button-disable"
+            for="{{ event.name }}"
+            ><span class="format-event__button-text button-disable__text">{{
+              event.name
             }}</span></label
           >
         </ng-container>
       </ng-container>
     </div>
-    <span *ngIf="eventForm.controls.event.touched && eventForm.controls.event.invalid" class="text-not-valid__form"
+    <span
+      *ngIf="
+        eventForm.controls.event.touched && eventForm.controls.event.invalid
+      "
+      class="text-not-valid__form"
       >Обязательное поле</span
     >
     <div
       [ngClass]="
-        eventForm.controls.countPeoples.touched && eventForm.controls.countPeoples.invalid
+        eventForm.controls.countPeoples.touched &&
+        eventForm.controls.countPeoples.invalid
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
@@ -54,12 +61,18 @@
       type="date"
       [formControl]="eventForm.controls.dateEvent"
       [ngClass]="
-        eventForm.controls.dateEvent.touched && eventForm.controls.dateEvent.invalid
+        eventForm.controls.dateEvent.touched &&
+        eventForm.controls.dateEvent.invalid
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
     />
-    <span *ngIf="eventForm.controls.dateEvent.touched && eventForm.controls.dateEvent.invalid" class="text-not-valid__form"
+    <span
+      *ngIf="
+        eventForm.controls.dateEvent.touched &&
+        eventForm.controls.dateEvent.invalid
+      "
+      class="text-not-valid__form"
       >Обязательное поле</span
     >
     <div style="margin-top: 19px" class="page-form__input">
@@ -75,8 +88,8 @@
           [formControl]="eventForm.controls.additionalService"
           [ngModel]="eventForm.controls.additionalService.value"
         >
-          <option value="{{service.price}}" *ngFor="let service of services">
-              {{service.name}}
+          <option value="{{ service.price }}" *ngFor="let service of services">
+            {{ service.name }}
           </option>
         </select>
       </ng-container>
@@ -89,22 +102,6 @@
       placeholder="Напишите пожелания по меню"
       [formControl]="eventForm.controls.desiredMenu"
     />
-    <div class="application__component">
-      <button class="button-continue">
-        <span class="button-continue__text" (click)="isValidForm()"
-          >Продолжить</span
-        >
-      </button>
-      <span class="text-processing-condition">
-        Нажимая кнопку вы соглашаетесь с
-        <span class="text-processing-condition__politic-conditions"
-          >условиями обработки персональных данных </span
-        >и
-        <span class="text-processing-condition__politic-conditions">
-          политикой конфиденциальности</span
-        >
-      </span>
-    </div>
     <app-info-event
       [priceEvent]="priceEvent"
       [priceOnePerson]="event?.priceOnePerson"

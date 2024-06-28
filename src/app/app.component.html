@@ -1,18 +1,22 @@
 <ng-container [ngSwitch]="isShowComponent">
   <ng-container *ngSwitchCase="steps.Event">
     <app-header-event></app-header-event>
-    <app-event-form (nextStep)="nextStep($event)"></app-event-form>
+    <app-event-form
+      [formControl]="eventFormGroup.controls.eventForm"
+    ></app-event-form>
+    <app-application-button (click)="nextStep()"></app-application-button>
   </ng-container>
   <ng-container *ngSwitchCase="steps.Contact">
     <app-header></app-header>
     <app-contact-form></app-contact-form>
-    <app-info-event
-      [priceEvent]="eventFormData.priceEvent"
-      [priceOnePerson]="eventFormData.event?.priceOnePerson"
-      [formatEvent]="eventFormData.eventForm.controls.event.value"
-      [countPerson]="eventFormData.eventForm.controls.countPeoples.value"
-      [dateEvent]="eventFormData.eventForm.controls.dateEvent.value"
-    >
-    </app-info-event>
+    <app-application-button (click)="nextStep()"></app-application-button>
   </ng-container>
 </ng-container>
+<!--<app-info-event-->
+<!--  [priceEvent]="eventFormGroup.controls.eventForm.value"-->
+<!--  [priceOnePerson]="eventFormData.event?.priceOnePerson"-->
+<!--  [formatEvent]="eventFormData.eventForm.controls.event.value"-->
+<!--  [countPerson]="eventFormData.eventForm.controls.countPeoples.value"-->
+<!--  [dateEvent]="eventFormData.eventForm.controls.dateEvent.value"-->
+<!--&gt;-->
+<!--</app-info-event>-->

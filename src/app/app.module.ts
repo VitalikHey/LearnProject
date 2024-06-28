@@ -13,6 +13,7 @@ import { EventFormComponent } from './component/event-form/event-form.component'
 import { HeaderEventComponent } from './component/header-event/header-event.component';
 import { PhoneMaskDirective } from './directive/tel-mask.directive';
 import { InfoEventComponent } from './component/info-event/info-event.component';
+import { ApplicationButtonComponent } from './component/application-button/application-button.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { InfoEventComponent } from './component/info-event/info-event.component'
     EventFormComponent,
     HeaderEventComponent,
     InfoEventComponent,
+    ApplicationButtonComponent,
   ],
   imports: [
     HttpClientModule,
