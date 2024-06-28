@@ -28,11 +28,11 @@ export class Service {
 }
 
 export type EventType = [
-    number | null,
-    Date | null,
-    number | null,
-    string | null,
-    number | null,
+  number | null,
+  Date | null,
+  number | null,
+  string | null,
+  number | null,
 ];
 
 export interface eventFormTypeTest {

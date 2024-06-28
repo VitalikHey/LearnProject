@@ -3,7 +3,8 @@ import {
   EventEmitter,
   forwardRef,
   inject,
-  OnDestroy, OnInit,
+  OnDestroy,
+  OnInit,
   Output,
 } from '@angular/core';
 import {
@@ -15,10 +16,17 @@ import {
 } from '@angular/forms';
 import {
   combineLatest,
-  Observable, Subject,
-  Subscription, takeUntil,
+  Observable,
+  Subject,
+  Subscription,
+  takeUntil,
 } from 'rxjs';
-import {EventFormType, eventFormTypeTest, Events, Service} from '../data-type/data-type';
+import {
+  EventFormType,
+  eventFormTypeTest,
+  Events,
+  Service,
+} from '../data-type/data-type';
 import { GetApiDataEvent } from '../service/get-api-data.event';
 import { GetApiAdditionalService } from '../service/get-api-additional.service';
 
@@ -51,11 +59,11 @@ export class EventFormComponent
   protected valueService: Array<Service> = [];
   private destroy$: Subject<void> = new Subject<void>();
 
-  protected onChange?: (value: eventFormTypeTest) => void
-  protected onTouched?: () => void
+  protected onChange?: (value: eventFormTypeTest) => void;
+  protected onTouched?: () => void;
 
   public writeValue(value: EventFormType): void {
-    if(value) {
+    if (value) {
       this.eventForm.patchValue({
         countPeoples: value.countPeoples.value,
         dateEvent: value.dateEvent.value,
@@ -99,28 +107,28 @@ export class EventFormComponent
     this.eventForm.controls.event.valueChanges,
     this.eventForm.controls.countPeoples.valueChanges,
     this.eventForm.controls.additionalService.valueChanges,
-  ]).pipe(takeUntil(this.destroy$))
+  ]).pipe(takeUntil(this.destroy$));
 
   public ngOnInit(): void {
-      this.valueChanges$.subscribe(
-        ([selectedEvent, countPeoples, additionalService]): void => {
-          this.event = this.arrayEvent.find(
-            (item: Events): boolean => item.name === selectedEvent,
-          );
-          if (this.event && countPeoples ) {
-            this.priceEvent =
-              this.event.priceOnePerson * countPeoples +
-              Number(additionalService);
-          }
-          if (this.onChange && this.event) {
-            this.onChange(this.eventForm.getRawValue());
-          }
-        },
-      );
+    this.valueChanges$.subscribe(
+      ([selectedEvent, countPeoples, additionalService]): void => {
+        this.event = this.arrayEvent.find(
+          (item: Events): boolean => item.name === selectedEvent,
+        );
+        if (this.event && countPeoples) {
+          this.priceEvent =
+            this.event.priceOnePerson * countPeoples +
+            Number(additionalService);
+        }
+        if (this.onChange && this.event) {
+          this.onChange(this.eventForm.getRawValue());
+        }
+      },
+    );
   }
 
   public ngOnDestroy(): void {
-    this.destroy$.next()
-    this.destroy$.complete()
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

@@ -102,13 +102,5 @@
       placeholder="Напишите пожелания по меню"
       [formControl]="eventForm.controls.desiredMenu"
     />
-    <app-info-event
-      [priceEvent]="priceEvent"
-      [priceOnePerson]="event?.priceOnePerson"
-      [formatEvent]="eventForm.controls.event.value"
-      [countPerson]="eventForm.controls.countPeoples.value"
-      [dateEvent]="eventForm.controls.dateEvent.value"
-    >
-    </app-info-event>
   </div>
 </div>
