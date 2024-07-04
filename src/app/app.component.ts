@@ -22,7 +22,9 @@ export class AppComponent implements OnInit, OnDestroy {
     GetApiAdditionalService,
   ).getApiService();
 
+  public validForm: boolean = true;
   public title: string = 'event-task';
+
   protected isShowComponent: number = 0;
   protected readonly steps = steps;
   protected priceEvent: number = 0;
@@ -74,7 +76,6 @@ export class AppComponent implements OnInit, OnDestroy {
           Number(
             this.eventFormGroup.controls.eventForm.value?.additionalService,
           );
-      console.log(this.eventFormGroup.controls.eventForm);
     });
   }
 
@@ -86,11 +87,9 @@ export class AppComponent implements OnInit, OnDestroy {
   protected nextStep(): void {
     if (this.eventFormGroup.controls.eventForm.valid) {
       this.isShowComponent = steps.Contact;
-      if (this.eventFormGroup.value) {
-        console.log(this.valueService);
-      }
     } else {
       alert('Форма заполнена неверно!');
+      this.validForm = false;
       console.log(this.eventFormGroup.value);
     }
   }

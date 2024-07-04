@@ -32,14 +32,13 @@
       </ng-container>
     </div>
     <span
-      *ngIf="eventForm.controls.countPeoples.invalid"
+      *ngIf="!validForm"
       class="text-not-valid__form"
       >Обязательное поле</span
     >
     <div
       [ngClass]="
-        eventForm.controls.countPeoples.touched &&
-        eventForm.controls.countPeoples.invalid
+        !validForm
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
@@ -68,16 +67,14 @@
       type="date"
       [formControl]="eventForm.controls.dateEvent"
       [ngClass]="
-        eventForm.controls.dateEvent.touched &&
-        eventForm.controls.dateEvent.invalid
+        !validForm
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
     />
     <span
       *ngIf="
-        eventForm.controls.dateEvent.touched &&
-        eventForm.controls.dateEvent.invalid
+        !validForm
       "
       class="text-not-valid__form"
       >Обязательное поле</span
@@ -85,8 +82,7 @@
     <div
       style="margin-top: 19px"
       [ngClass]="
-        eventForm.controls.additionalService.touched &&
-        eventForm.controls.additionalService.value === null
+        !validForm
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
@@ -112,8 +108,7 @@
     </div>
     <span
       *ngIf="
-        eventForm.controls.additionalService.touched &&
-        eventForm.controls.additionalService.value === null
+        !validForm
       "
       class="text-not-valid__form"
       >Обязательное поле</span

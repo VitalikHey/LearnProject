@@ -2,6 +2,7 @@ import {
   Component,
   forwardRef,
   inject,
+  Input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -37,6 +38,8 @@ import { GetApiAdditionalService } from '../service/get-api-additional.service';
 export class EventFormComponent
   implements ControlValueAccessor, OnDestroy, OnInit
 {
+  @Input() public validForm: boolean = true;
+
   protected events$: Observable<Events[]> =
     inject(GetApiDataEvent).getApiEvent();
   protected service$: Observable<Service[]> = inject(
@@ -85,7 +88,7 @@ export class EventFormComponent
   );
 
   public eventForm: FormGroup<EventFormType> = new FormGroup<EventFormType>({
-    countPeoples: new FormControl(null, Validators.required),
+    countPeoples: new FormControl(0, Validators.required),
     dateEvent: new FormControl(null, Validators.required),
     additionalService: new FormControl(null),
     desiredMenu: new FormControl(null),
@@ -101,13 +104,21 @@ export class EventFormComponent
 
   public ngOnInit(): void {
     this.valueChanges$.subscribe((): void => {
-      if (this.onChange) {
+      if (
+        this.onChange &&
+        this.eventForm.controls.countPeoples.valid &&
+        this.eventForm.controls.dateEvent.valid &&
+        this.eventForm.controls.event.valid &&
+        this.eventForm.controls.additionalService.value
+      ) {
         this.onChange(this.eventForm.getRawValue());
       }
     });
   }
 
   public ngOnDestroy(): void {
+    this.eventsSubscription.unsubscribe();
+    this.serviceSubscription.unsubscribe();
     this.destroy$.next();
     this.destroy$.complete();
   }

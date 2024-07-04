@@ -2,6 +2,7 @@
   <ng-container *ngSwitchCase="steps.Event">
     <app-header-event></app-header-event>
     <app-event-form
+      [validForm]="validForm"
       [formControl]="eventFormGroup.controls.eventForm"
     ></app-event-form>
     <app-continue-button (click)="nextStep()"></app-continue-button>
