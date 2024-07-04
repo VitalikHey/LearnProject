@@ -35,10 +35,6 @@ export interface eventFormTypeTest {
   event: string | null;
 }
 
-export interface EventForm {
-  eventForm: FormControl<eventFormTypeTest | null>;
-}
-
 export interface EventFormType {
   countPeoples: FormControl<number | null>;
   dateEvent: FormControl<Date | null>;
