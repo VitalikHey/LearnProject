@@ -12,14 +12,7 @@ import {
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
-import {
-  filter,
-  merge,
-  Observable,
-  Subject,
-  Subscription,
-  takeUntil,
-} from 'rxjs';
+import { filter, merge, Observable, Subject, takeUntil } from 'rxjs';
 import {
   EventFormType,
   eventFormTypeTest,
@@ -81,16 +74,6 @@ export class EventFormComponent
     this.onTouched = fn;
   }
 
-  protected readonly eventsSubscription: Subscription = this.events$.subscribe(
-    (value: Events[]): void => {
-      this.arrayEvent = value;
-    },
-  );
-  protected readonly serviceSubscription: Subscription =
-    this.service$.subscribe((value: Service[]): void => {
-      this.valueService = value;
-    });
-
   protected readonly eventForm: FormGroup<EventFormType> =
     new FormGroup<EventFormType>({
       countPeoples: new FormControl(0, Validators.min(10)),
@@ -105,9 +88,20 @@ export class EventFormComponent
     this.eventForm.controls.countPeoples.valueChanges,
     this.eventForm.controls.additionalService.valueChanges,
     this.eventForm.controls.dateEvent.valueChanges,
-  ).pipe(takeUntil(this.destroy$));
+  );
 
   public ngOnInit(): void {
+    this.service$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value: Service[]): void => {
+        this.valueService = value;
+      });
+    this.events$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value: Events[]): void => {
+        this.arrayEvent = value;
+      });
+
     this.valueChanges$
       .pipe(
         filter(() => {
@@ -123,8 +117,6 @@ export class EventFormComponent
   }
 
   public ngOnDestroy(): void {
-    this.eventsSubscription.unsubscribe();
-    this.serviceSubscription.unsubscribe();
     this.destroy$.next();
     this.destroy$.complete();
   }

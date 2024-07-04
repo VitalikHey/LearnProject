@@ -6,7 +6,7 @@ import {
   Steps,
 } from './component/data-type/data-type';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { GetApiDataEvent } from './component/service/get-api-data.event';
 import { GetApiAdditionalService } from './component/service/get-api-additional.service';
 
@@ -31,25 +31,25 @@ export class AppComponent implements OnInit, OnDestroy {
   protected priceOnePerson: number = 0;
   protected arrayEvent: Array<Events> = [];
   protected valueService: Array<Service> = [];
+  protected additionalService: number = 0;
+
+  private readonly destroy$: Subject<void> = new Subject<void>();
 
   protected eventFormGroup: FormGroup<EventForm> = new FormGroup<EventForm>({
     eventForm: new FormControl(null, Validators.required),
   });
 
-  protected eventsSubscription: Subscription = this.events$.subscribe(
-    (value: Events[]): void => {
-      this.arrayEvent = value;
-    },
-  );
-  protected serviceSubscription: Subscription = this.service$.subscribe(
-    (value: Service[]): void => {
-      this.valueService = value;
-    },
-  );
-
-  protected additionalService: number = 0;
-
   public ngOnInit(): void {
+    this.service$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value: Service[]): void => {
+        this.valueService = value;
+      });
+    this.events$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value: Events[]): void => {
+        this.arrayEvent = value;
+      });
     if (this.eventFormGroup.controls.eventForm.value?.additionalService) {
       this.additionalService =
         this.eventFormGroup.controls.eventForm.value?.additionalService;
@@ -80,8 +80,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.eventsSubscription.unsubscribe();
-    this.serviceSubscription.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   protected nextStep(): void {
@@ -89,7 +89,6 @@ export class AppComponent implements OnInit, OnDestroy {
       this.isShowComponent = Steps.Contact;
     } else {
       alert('Форма заполнена неверно!');
-      console.log(this.eventFormGroup.value);
     }
   }
 }

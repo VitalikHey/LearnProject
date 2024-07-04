@@ -9,14 +9,20 @@
     "
     [formControl]="formContact.controls.name"
   />
-  <span *ngIf="!formContact.controls.name.valid && formContact.controls.name.touched" class="text-not-valid__form"
+  <span
+    *ngIf="
+      !formContact.controls.name.valid && formContact.controls.name.touched
+    "
+    class="text-not-valid__form"
     >Обязательное поле</span
   >
   <input
     placeholder="Мобильный телефон"
     type="tel"
     appPhoneMask
-    [ngStyle]="{ 'margin-top': formContact.controls.number.valid ? '4px' : '19px' }"
+    [ngStyle]="{
+      'margin-top': formContact.controls.number.valid ? '4px' : '19px',
+    }"
     [ngClass]="
       !formContact.controls.number.valid && formContact.controls.number.touched
         ? 'page-form__input not-valid-form'
@@ -24,7 +30,11 @@
     "
     [formControl]="formContact.controls.number"
   />
-  <span *ngIf="!formContact.controls.number.valid && formContact.controls.number.touched" class="text-not-valid__form"
+  <span
+    *ngIf="
+      !formContact.controls.number.valid && formContact.controls.number.touched
+    "
+    class="text-not-valid__form"
     >Обязательное поле</span
   >
   <input
@@ -35,10 +45,19 @@
         ? 'page-form__input not-valid-form'
         : 'page-form__input'
     "
-    [ngStyle]="{ 'margin-top': !formContact.controls.email.valid && formContact.controls.name.touched ? '10px' : '19px' }"
+    [ngStyle]="{
+      'margin-top':
+        !formContact.controls.email.valid && formContact.controls.name.touched
+          ? '10px'
+          : '19px',
+    }"
     [formControl]="formContact.controls.email"
   />
-  <span *ngIf="!formContact.controls.email.valid && formContact.controls.name.touched" class="text-not-valid__form"
+  <span
+    *ngIf="
+      !formContact.controls.email.valid && formContact.controls.name.touched
+    "
+    class="text-not-valid__form"
     >Проверьте корректность почтового адреса</span
   >
 </div>
