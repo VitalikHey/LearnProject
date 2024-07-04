@@ -3,42 +3,42 @@
     placeholder="Ваше имя"
     type="text"
     [ngClass]="
-      isShowTextDownForm
+      !formContact.controls.name.valid && formContact.controls.name.touched
         ? 'page-form__input not-valid-form'
         : 'page-form__input'
     "
     [formControl]="formContact.controls.name"
   />
-  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+  <span *ngIf="!formContact.controls.name.valid && formContact.controls.name.touched" class="text-not-valid__form"
     >Обязательное поле</span
   >
   <input
     placeholder="Мобильный телефон"
     type="tel"
     appPhoneMask
-    [ngStyle]="{ 'margin-top': isShowTextDownForm ? '4px' : '19px' }"
+    [ngStyle]="{ 'margin-top': formContact.controls.number.valid ? '4px' : '19px' }"
     [ngClass]="
-      isShowTextDownForm
+      !formContact.controls.number.valid && formContact.controls.number.touched
         ? 'page-form__input not-valid-form'
         : 'page-form__input'
     "
     [formControl]="formContact.controls.number"
   />
-  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+  <span *ngIf="!formContact.controls.number.valid && formContact.controls.number.touched" class="text-not-valid__form"
     >Обязательное поле</span
   >
   <input
     placeholder="Электронная почта"
     type="email"
     [ngClass]="
-      isShowTextDownForm
+      !formContact.controls.email.valid && formContact.controls.name.touched
         ? 'page-form__input not-valid-form'
         : 'page-form__input'
     "
-    [ngStyle]="{ 'margin-top': isShowTextDownForm ? '10px' : '19px' }"
+    [ngStyle]="{ 'margin-top': !formContact.controls.email.valid && formContact.controls.name.touched ? '10px' : '19px' }"
     [formControl]="formContact.controls.email"
   />
-  <span *ngIf="isShowTextDownForm" class="text-not-valid__form"
+  <span *ngIf="!formContact.controls.email.valid && formContact.controls.name.touched" class="text-not-valid__form"
     >Проверьте корректность почтового адреса</span
   >
 </div>

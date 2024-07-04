@@ -2,7 +2,6 @@ import {
   Component,
   forwardRef,
   inject,
-  Input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -13,7 +12,14 @@ import {
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
-import { merge, Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import {
+  filter,
+  merge,
+  Observable,
+  Subject,
+  Subscription,
+  takeUntil,
+} from 'rxjs';
 import {
   EventFormType,
   eventFormTypeTest,
@@ -38,11 +44,10 @@ import { GetApiAdditionalService } from '../service/get-api-additional.service';
 export class EventFormComponent
   implements ControlValueAccessor, OnDestroy, OnInit
 {
-  @Input() public validForm: boolean = true;
-
-  protected events$: Observable<Events[]> =
+  protected readonly events$: Observable<Events[]> =
     inject(GetApiDataEvent).getApiEvent();
-  protected service$: Observable<Service[]> = inject(
+
+  protected readonly service$: Observable<Service[]> = inject(
     GetApiAdditionalService,
   ).getApiService();
 
@@ -54,7 +59,7 @@ export class EventFormComponent
   protected onChange?: (value: eventFormTypeTest) => void;
   protected onTouched?: () => void;
 
-  private destroy$: Subject<void> = new Subject<void>();
+  private readonly destroy$: Subject<void> = new Subject<void>();
 
   public writeValue(value: EventFormType): void {
     if (value) {
@@ -76,24 +81,24 @@ export class EventFormComponent
     this.onTouched = fn;
   }
 
-  protected eventsSubscription: Subscription = this.events$.subscribe(
+  protected readonly eventsSubscription: Subscription = this.events$.subscribe(
     (value: Events[]): void => {
       this.arrayEvent = value;
     },
   );
-  protected serviceSubscription: Subscription = this.service$.subscribe(
-    (value: Service[]): void => {
+  protected readonly serviceSubscription: Subscription =
+    this.service$.subscribe((value: Service[]): void => {
       this.valueService = value;
-    },
-  );
+    });
 
-  public eventForm: FormGroup<EventFormType> = new FormGroup<EventFormType>({
-    countPeoples: new FormControl(0, Validators.required),
-    dateEvent: new FormControl(null, Validators.required),
-    additionalService: new FormControl(null),
-    desiredMenu: new FormControl(null),
-    event: new FormControl(null, Validators.required),
-  });
+  protected readonly eventForm: FormGroup<EventFormType> =
+    new FormGroup<EventFormType>({
+      countPeoples: new FormControl(0, Validators.min(10)),
+      dateEvent: new FormControl(null, Validators.required),
+      additionalService: new FormControl(null),
+      desiredMenu: new FormControl(null),
+      event: new FormControl(null, Validators.required),
+    });
 
   protected valueChanges$: Observable<string | number | null | Date> = merge(
     this.eventForm.controls.event.valueChanges,
@@ -103,17 +108,18 @@ export class EventFormComponent
   ).pipe(takeUntil(this.destroy$));
 
   public ngOnInit(): void {
-    this.valueChanges$.subscribe((): void => {
-      if (
-        this.onChange &&
-        this.eventForm.controls.countPeoples.valid &&
-        this.eventForm.controls.dateEvent.valid &&
-        this.eventForm.controls.event.valid &&
-        this.eventForm.controls.additionalService.value
-      ) {
-        this.onChange(this.eventForm.getRawValue());
-      }
-    });
+    this.valueChanges$
+      .pipe(
+        filter(() => {
+          return this.eventForm.valid;
+        }),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((): void => {
+        if (this.onChange) {
+          this.onChange(this.eventForm.getRawValue());
+        }
+      });
   }
 
   public ngOnDestroy(): void {

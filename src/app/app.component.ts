@@ -3,7 +3,7 @@ import {
   EventForm,
   Events,
   Service,
-  steps,
+  Steps,
 } from './component/data-type/data-type';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
@@ -22,11 +22,11 @@ export class AppComponent implements OnInit, OnDestroy {
     GetApiAdditionalService,
   ).getApiService();
 
-  public validForm: boolean = true;
-  public title: string = 'event-task';
+  public titleContinue: string = 'Продолжить';
+  public titleApplication: string = 'Отправить заявку';
 
   protected isShowComponent: number = 0;
-  protected readonly steps = steps;
+  protected readonly Steps: typeof Steps = Steps;
   protected priceEvent: number = 0;
   protected priceOnePerson: number = 0;
   protected arrayEvent: Array<Events> = [];
@@ -86,10 +86,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   protected nextStep(): void {
     if (this.eventFormGroup.controls.eventForm.valid) {
-      this.isShowComponent = steps.Contact;
+      this.isShowComponent = Steps.Contact;
     } else {
       alert('Форма заполнена неверно!');
-      this.validForm = false;
       console.log(this.eventFormGroup.value);
     }
   }

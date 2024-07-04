@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export enum steps {
+export enum Steps {
   Event = 0,
   Contact = 1,
 }

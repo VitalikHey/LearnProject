@@ -32,13 +32,17 @@
       </ng-container>
     </div>
     <span
-      *ngIf="!validForm"
+      *ngIf="
+        !eventForm.controls.countPeoples.valid &&
+        eventForm.controls.countPeoples.touched
+      "
       class="text-not-valid__form"
       >Обязательное поле</span
     >
     <div
       [ngClass]="
-        !validForm
+        !eventForm.controls.countPeoples.valid &&
+        eventForm.controls.countPeoples.touched
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
@@ -67,14 +71,16 @@
       type="date"
       [formControl]="eventForm.controls.dateEvent"
       [ngClass]="
-        !validForm
+        !eventForm.controls.dateEvent.valid &&
+        eventForm.controls.dateEvent.touched
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
     />
     <span
       *ngIf="
-        !validForm
+        !eventForm.controls.dateEvent.valid &&
+        eventForm.controls.dateEvent.touched
       "
       class="text-not-valid__form"
       >Обязательное поле</span
@@ -82,12 +88,15 @@
     <div
       style="margin-top: 19px"
       [ngClass]="
-        !validForm
+        !eventForm.controls.additionalService.valid &&
+        eventForm.controls.additionalService.touched
           ? 'page-form__input not-valid-form'
           : 'page-form__input'
       "
     >
+      <span style="margin-right: 82px">Дополнительные услуги: </span>
       <input
+        style="display: none"
         placeholder="Дополнительные услуги:"
         class="service__input"
         type="text"
@@ -104,15 +113,7 @@
           </option>
         </select>
       </ng-container>
-      <!--    Оставляю стиль этой формы на потом, пока займусь более важными делами-->
     </div>
-    <span
-      *ngIf="
-        !validForm
-      "
-      class="text-not-valid__form"
-      >Обязательное поле</span
-    >
     <input
       style="margin-top: 19px"
       class="page-form__input"
