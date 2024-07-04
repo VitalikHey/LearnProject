@@ -1,11 +1,11 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
-  EventForm,
+  eventFormTypeTest,
   Events,
   Service,
   Steps,
 } from './component/data-type/data-type';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { GetApiDataEvent } from './component/service/get-api-data.event';
 import { GetApiAdditionalService } from './component/service/get-api-additional.service';
@@ -35,9 +35,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private readonly destroy$: Subject<void> = new Subject<void>();
 
-  protected eventFormGroup: FormGroup<EventForm> = new FormGroup<EventForm>({
-    eventForm: new FormControl(null, Validators.required),
-  });
+  protected eventForm: FormControl<eventFormTypeTest | null> = new FormControl(
+    null,
+    Validators.required,
+  );
 
   public ngOnInit(): void {
     this.service$
@@ -50,12 +51,11 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe((value: Events[]): void => {
         this.arrayEvent = value;
       });
-    if (this.eventFormGroup.controls.eventForm.value?.additionalService) {
-      this.additionalService =
-        this.eventFormGroup.controls.eventForm.value?.additionalService;
+    if (this.eventForm.value?.additionalService) {
+      this.additionalService = this.eventForm.value?.additionalService;
     }
-    this.eventFormGroup.valueChanges.subscribe((): void => {
-      switch (this.eventFormGroup.controls.eventForm.value?.event) {
+    this.eventForm.valueChanges.subscribe((): void => {
+      switch (this.eventForm.value?.event) {
         case this.arrayEvent[0].name:
           this.priceOnePerson = this.arrayEvent[0].priceOnePerson;
           break;
@@ -67,15 +67,12 @@ export class AppComponent implements OnInit, OnDestroy {
       }
 
       if (
-        this.eventFormGroup.controls.eventForm.value?.countPeoples &&
-        this.eventFormGroup.controls.eventForm.value?.additionalService
+        this.eventForm.value?.countPeoples &&
+        this.eventForm.value?.additionalService
       )
         this.priceEvent =
-          this.priceOnePerson *
-            this.eventFormGroup.controls.eventForm.value?.countPeoples +
-          Number(
-            this.eventFormGroup.controls.eventForm.value?.additionalService,
-          );
+          this.priceOnePerson * this.eventForm.value?.countPeoples +
+          Number(this.eventForm.value?.additionalService);
     });
   }
 
@@ -85,7 +82,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   protected nextStep(): void {
-    if (this.eventFormGroup.controls.eventForm.valid) {
+    if (this.eventForm.valid) {
       this.isShowComponent = Steps.Contact;
     } else {
       alert('Форма заполнена неверно!');

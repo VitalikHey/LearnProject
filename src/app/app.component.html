@@ -22,7 +22,7 @@
       <span class="heading__step">Расскажите о мероприятии</span>
     </div>
     <app-event-form
-      [formControl]="eventFormGroup.controls.eventForm"
+      [formControl]="eventForm"
     ></app-event-form>
     <app-continue-button
       [title]="titleContinue"
@@ -58,8 +58,8 @@
 <app-info-event
   [priceEvent]="priceEvent"
   [priceOnePerson]="priceOnePerson"
-  [formatEvent]="eventFormGroup.controls.eventForm.value?.event"
-  [countPerson]="eventFormGroup.controls.eventForm.value?.countPeoples"
-  [dateEvent]="eventFormGroup.controls.eventForm.value?.dateEvent"
+  [formatEvent]="eventForm.value?.event"
+  [countPerson]="eventForm.value?.countPeoples"
+  [dateEvent]="eventForm.value?.dateEvent"
 >
 </app-info-event>
