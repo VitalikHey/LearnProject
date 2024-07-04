@@ -61,14 +61,20 @@ export class AppComponent implements OnInit, OnDestroy {
           this.priceOnePerson = this.arrayEvent[1].priceOnePerson;
           break;
         case this.arrayEvent[2].name:
-          this.priceOnePerson = this.arrayEvent[1].priceOnePerson;
+          this.priceOnePerson = this.arrayEvent[2].priceOnePerson;
       }
 
-      if (this.eventFormGroup.controls.eventForm.value?.countPeoples &&             this.eventFormGroup.controls.eventForm.value?.additionalService)
+      if (
+        this.eventFormGroup.controls.eventForm.value?.countPeoples &&
+        this.eventFormGroup.controls.eventForm.value?.additionalService
+      )
         this.priceEvent =
           this.priceOnePerson *
             this.eventFormGroup.controls.eventForm.value?.countPeoples +
-            Number(this.eventFormGroup.controls.eventForm.value?.additionalService)
+          Number(
+            this.eventFormGroup.controls.eventForm.value?.additionalService,
+          );
+      console.log(this.eventFormGroup.controls.eventForm);
     });
   }
 
@@ -78,7 +84,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   protected nextStep(): void {
-    if (this.eventFormGroup.valid) {
+    if (this.eventFormGroup.controls.eventForm.valid) {
       this.isShowComponent = steps.Contact;
       if (this.eventFormGroup.value) {
         console.log(this.valueService);

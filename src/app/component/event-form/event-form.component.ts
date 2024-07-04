@@ -1,11 +1,9 @@
 import {
   Component,
-  EventEmitter,
   forwardRef,
   inject,
   OnDestroy,
   OnInit,
-  Output,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -14,13 +12,7 @@ import {
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
-import {
-  combineLatest,
-  Observable,
-  Subject,
-  Subscription,
-  takeUntil,
-} from 'rxjs';
+import { merge, Observable, Subject, Subscription, takeUntil } from 'rxjs';
 import {
   EventFormType,
   eventFormTypeTest,
@@ -45,22 +37,21 @@ import { GetApiAdditionalService } from '../service/get-api-additional.service';
 export class EventFormComponent
   implements ControlValueAccessor, OnDestroy, OnInit
 {
-  @Output() public nextStep: EventEmitter<number> = new EventEmitter<number>();
   protected events$: Observable<Events[]> =
     inject(GetApiDataEvent).getApiEvent();
   protected service$: Observable<Service[]> = inject(
     GetApiAdditionalService,
   ).getApiService();
 
-  protected initialPriceOnePerson: number = 0;
-  public priceEvent: number = 0;
   public event: Events | undefined;
+
+  protected initialPriceOnePerson: number = 0;
   protected arrayEvent: Array<Events> = [];
   protected valueService: Array<Service> = [];
-  private destroy$: Subject<void> = new Subject<void>();
-
   protected onChange?: (value: eventFormTypeTest) => void;
   protected onTouched?: () => void;
+
+  private destroy$: Subject<void> = new Subject<void>();
 
   public writeValue(value: EventFormType): void {
     if (value) {
@@ -94,37 +85,26 @@ export class EventFormComponent
   );
 
   public eventForm: FormGroup<EventFormType> = new FormGroup<EventFormType>({
-    countPeoples: new FormControl(0, Validators.required),
+    countPeoples: new FormControl(null, Validators.required),
     dateEvent: new FormControl(null, Validators.required),
     additionalService: new FormControl(null),
     desiredMenu: new FormControl(null),
     event: new FormControl(null, Validators.required),
   });
 
-  protected valueChanges$: Observable<
-    [string | null, number | null, number | null]
-  > = combineLatest([
+  protected valueChanges$: Observable<string | number | null | Date> = merge(
     this.eventForm.controls.event.valueChanges,
     this.eventForm.controls.countPeoples.valueChanges,
     this.eventForm.controls.additionalService.valueChanges,
-  ]).pipe(takeUntil(this.destroy$));
+    this.eventForm.controls.dateEvent.valueChanges,
+  ).pipe(takeUntil(this.destroy$));
 
   public ngOnInit(): void {
-    this.valueChanges$.subscribe(
-      ([selectedEvent, countPeoples, additionalService]): void => {
-        this.event = this.arrayEvent.find(
-          (item: Events): boolean => item.name === selectedEvent,
-        );
-        if (this.event && countPeoples) {
-          this.priceEvent =
-            this.event.priceOnePerson * countPeoples +
-            Number(additionalService);
-        }
-        if (this.onChange && this.event) {
-          this.onChange(this.eventForm.getRawValue());
-        }
-      },
-    );
+    this.valueChanges$.subscribe((): void => {
+      if (this.onChange) {
+        this.onChange(this.eventForm.getRawValue());
+      }
+    });
   }
 
   public ngOnDestroy(): void {

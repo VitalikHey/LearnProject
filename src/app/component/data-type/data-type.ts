@@ -27,14 +27,6 @@ export class Service {
   }
 }
 
-export type EventType = [
-  number | null,
-  Date | null,
-  number | null,
-  string | null,
-  number | null,
-];
-
 export interface eventFormTypeTest {
   countPeoples: number | null;
   dateEvent: Date | null;

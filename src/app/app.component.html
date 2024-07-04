@@ -4,12 +4,12 @@
     <app-event-form
       [formControl]="eventFormGroup.controls.eventForm"
     ></app-event-form>
-    <app-application-button (click)="nextStep()"></app-application-button>
+    <app-continue-button (click)="nextStep()"></app-continue-button>
   </ng-container>
   <ng-container *ngSwitchCase="steps.Contact">
     <app-header></app-header>
     <app-contact-form></app-contact-form>
-    <app-application-button (click)="nextStep()"></app-application-button>
+    <app-application-button></app-application-button>
   </ng-container>
 </ng-container>
 <app-info-event

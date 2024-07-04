@@ -1,6 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import "fonts";
+
 body {
   background: #f3f5f8;
+  font-family: "Lab Grotesque", sans-serif;
 }
 
 .page-form__input {
@@ -34,7 +36,7 @@ body {
   color: #222733;
 }
 
-.application__component {
+.continue__component {
   position: absolute;
   margin-top: 350px;
   margin-left: 70px;

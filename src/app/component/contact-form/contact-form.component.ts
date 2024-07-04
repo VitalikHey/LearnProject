@@ -17,7 +17,7 @@ export class ContactFormComponent {
       email: new FormControl(null, Validators.email),
     });
 
-  protected handleValueContact(): void {
+  public handleValueContact(): void {
     if (this.formContact.valid) {
       this.isShowTextDownForm = false;
       console.log(this.formContact.value);

@@ -13,19 +13,26 @@
             [formControl]="eventForm.controls.event"
           />
           <label
-            class="format-event__button button-disable"
+            [ngClass]="
+              eventForm.controls.event.value === event.name
+                ? 'format-event__button button-enable'
+                : 'format-event__button button-disable'
+            "
             for="{{ event.name }}"
-            ><span class="format-event__button-text button-disable__text">{{
-              event.name
-            }}</span></label
+            ><span
+              [ngClass]="
+                eventForm.controls.event.value === event.name
+                  ? 'format-event__button-text button-enable__text'
+                  : 'format-event__button-text button-disable__text'
+              "
+              >{{ event.name }}</span
+            ></label
           >
         </ng-container>
       </ng-container>
     </div>
     <span
-      *ngIf="
-        eventForm.controls.event.touched && eventForm.controls.event.invalid
-      "
+      *ngIf="eventForm.controls.countPeoples.invalid"
       class="text-not-valid__form"
       >Обязательное поле</span
     >
@@ -52,7 +59,7 @@
       [formControl]="eventForm.controls.countPeoples"
     />
     <span class="text-down__range">От 10 человек</span>
-    <span class="text-down__range" style="margin-left: 458px"
+    <span class="text-down__range" style="margin-left: 470px"
       >До 100 человек</span
     >
     <input
@@ -75,14 +82,22 @@
       class="text-not-valid__form"
       >Обязательное поле</span
     >
-    <div style="margin-top: 19px" class="page-form__input">
+    <div
+      style="margin-top: 19px"
+      [ngClass]="
+        eventForm.controls.additionalService.touched &&
+        eventForm.controls.additionalService.value === null
+          ? 'page-form__input not-valid-form'
+          : 'page-form__input'
+      "
+    >
       <input
         placeholder="Дополнительные услуги:"
         class="service__input"
         type="text"
       />
-      <ng-container *ngIf="service$ | async as services">
-        <select
+      <ng-container *ngIf="service$ | async as services"
+        ><select
           class="service-select"
           [value]="initialPriceOnePerson"
           [formControl]="eventForm.controls.additionalService"
@@ -95,6 +110,14 @@
       </ng-container>
       <!--    Оставляю стиль этой формы на потом, пока займусь более важными делами-->
     </div>
+    <span
+      *ngIf="
+        eventForm.controls.additionalService.touched &&
+        eventForm.controls.additionalService.value === null
+      "
+      class="text-not-valid__form"
+      >Обязательное поле</span
+    >
     <input
       style="margin-top: 19px"
       class="page-form__input"
