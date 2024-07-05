@@ -9,7 +9,6 @@ import { FormControl, Validators } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { GetApiDataEvent } from './component/service/get-api-data.event';
 import { GetApiAdditionalService } from './component/service/get-api-additional.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
