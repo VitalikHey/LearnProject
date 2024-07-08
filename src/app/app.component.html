@@ -1,5 +1,5 @@
 <ng-container [ngSwitch]="isShowComponent">
-  <ng-container *ngSwitchCase="Steps.Event">
+  <ng-container *ngSwitchCase="Steps.Contact">
     <div class="header">
       <span class="event__header">
         <img
@@ -27,7 +27,7 @@
       (click)="nextStep()"
     ></app-continue-button>
   </ng-container>
-  <ng-container *ngSwitchCase="Steps.Contact">
+  <ng-container *ngSwitchCase="Steps.Event">
     <div class="header">
       <span class="event__header">
         <img
