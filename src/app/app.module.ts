@@ -13,6 +13,15 @@ import { PhoneMaskDirective } from './directive/tel-mask.directive';
 import { InfoEventComponent } from './component/info-event/info-event.component';
 import { ContinueButtonComponent } from './component/continue-button/continue-button.component';
 import { ApplicationButtonComponent } from './component/application-button/application-button.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+import { TestComponent } from './component/test/test.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -23,6 +32,7 @@ import { ApplicationButtonComponent } from './component/application-button/appli
     InfoEventComponent,
     ContinueButtonComponent,
     ApplicationButtonComponent,
+    TestComponent,
   ],
   imports: [
     HttpClientModule,
@@ -31,6 +41,14 @@ import { ApplicationButtonComponent } from './component/application-button/appli
     FormsModule,
     NgOptimizedImage,
     ReactiveFormsModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatIconModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
   ],
   providers: [GetApiDataEvent, EventFormComponent],
   bootstrap: [AppComponent],

@@ -21,9 +21,7 @@
       </span>
       <span class="heading__step">Расскажите о мероприятии</span>
     </div>
-    <app-event-form
-      [formControl]="eventForm"
-    ></app-event-form>
+    <app-event-form [formControl]="eventForm"></app-event-form>
     <app-continue-button
       [title]="titleContinue"
       (click)="nextStep()"

@@ -3,123 +3,68 @@
     <div class="radio-buttons-place">
       <span class="format-event__text">Выберите формат мероприятия:</span>
       <ng-container *ngIf="events$ | async as events">
-        <ng-container *ngFor="let event of events">
-          <input
-            style="display: none"
-            type="radio"
-            name="event"
-            id="{{ event.name }}"
-            value="{{ event.name }}"
-            [formControl]="eventForm.controls.event"
-          />
-          <label
-            [ngClass]="
-              eventForm.controls.event.value === event.name
-                ? 'format-event__button button-enable'
-                : 'format-event__button button-disable'
-            "
-            for="{{ event.name }}"
-            ><span
-              [ngClass]="
-                eventForm.controls.event.value === event.name
-                  ? 'format-event__button-text button-enable__text'
-                  : 'format-event__button-text button-disable__text'
-              "
-              >{{ event.name }}</span
-            ></label
-          >
-        </ng-container>
-      </ng-container>
-    </div>
-    <span
-      *ngIf="
-        !eventForm.controls.countPeoples.valid &&
-        eventForm.controls.countPeoples.touched
-      "
-      class="text-not-valid__form"
-      >Обязательное поле</span
-    >
-    <div
-      [ngClass]="
-        !eventForm.controls.countPeoples.valid &&
-        eventForm.controls.countPeoples.touched
-          ? 'page-form__input not-valid-form'
-          : 'page-form__input'
-      "
-    >
-      <span class="count-people__text-form"
-        >Количество гостей: {{ eventForm.controls.countPeoples.value }}
-      </span>
-    </div>
-    <input
-      type="range"
-      min="10"
-      max="100"
-      step="1"
-      id="peopleRange"
-      placeholder="Количество гостей:"
-      class="count-people__input"
-      [formControl]="eventForm.controls.countPeoples"
-    />
-    <span class="text-down__range">От 10 человек</span>
-    <span class="text-down__range" style="margin-left: 470px"
-      >До 100 человек</span
-    >
-    <input
-      style="margin-top: 19px; padding-left: 15px; padding-right: 15px"
-      placeholder="Дата мероприятия:"
-      type="date"
-      [formControl]="eventForm.controls.dateEvent"
-      [ngClass]="
-        !eventForm.controls.dateEvent.valid &&
-        eventForm.controls.dateEvent.touched
-          ? 'page-form__input not-valid-form'
-          : 'page-form__input'
-      "
-    />
-    <span
-      *ngIf="
-        !eventForm.controls.dateEvent.valid &&
-        eventForm.controls.dateEvent.touched
-      "
-      class="text-not-valid__form"
-      >Обязательное поле</span
-    >
-    <div
-      style="margin-top: 19px"
-      [ngClass]="
-        !eventForm.controls.additionalService.valid &&
-        eventForm.controls.additionalService.touched
-          ? 'page-form__input not-valid-form'
-          : 'page-form__input'
-      "
-    >
-      <span style="margin-right: 82px">Дополнительные услуги: </span>
-      <input
-        style="display: none"
-        placeholder="Дополнительные услуги:"
-        class="service__input"
-        type="text"
-      />
-      <ng-container *ngIf="service$ | async as services"
-        ><select
-          class="service-select"
-          [value]="initialPriceOnePerson"
-          [formControl]="eventForm.controls.additionalService"
-          [ngModel]="eventForm.controls.additionalService.value"
+        <mat-button-toggle-group
+          [formControl]="eventForm.controls.event"
+          name="eventGroup"
         >
-          <option value="{{ service.price }}" *ngFor="let service of services">
-            {{ service.name }}
-          </option>
-        </select>
+          <ng-container *ngFor="let event of events">
+            <mat-button-toggle value="{{ event.name }}">{{
+              event.name
+            }}</mat-button-toggle>
+          </ng-container>
+        </mat-button-toggle-group>
       </ng-container>
     </div>
-    <input
-      style="margin-top: 19px"
-      class="page-form__input"
-      type="text"
-      placeholder="Напишите пожелания по меню"
-      [formControl]="eventForm.controls.desiredMenu"
-    />
+    <div style="margin-top: 16px">
+      <mat-label>
+        Количество гостей: {{ eventForm.controls.countPeoples.value }}
+      </mat-label>
+      <mat-slider style="width: 620px">
+        <input
+          min="10"
+          max="100"
+          step="1"
+          id="peopleRange"
+          placeholder="Количество гостей:"
+          class="count-people__input"
+          [formControl]="eventForm.controls.countPeoples"
+          matSliderThumb
+        />
+      </mat-slider>
+      <span class="text-down__range">От 10 человек</span>
+      <span class="text-down__range" style="margin-left: 470px"
+      >До 100 человек</span
+      >
+    </div>
+    <mat-form-field style="width: 624px; margin-top: 16px">
+      <input
+        placeholder="Дата мероприятия:"
+        type="date"
+        [formControl]="eventForm.controls.dateEvent"
+        matInput
+      />
+      <mat-error *ngIf="eventForm.controls.dateEvent.hasError('required')"
+        >Обязательное поле</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 624px; margin-top: 16px">
+      <mat-label>Дополнительные услуги: </mat-label>
+      <mat-select [formControl]="eventForm.controls.additionalService">
+        <ng-container *ngIf="service$ | async as services">
+          <mat-option *ngFor="let service of services" [value]="service.price">
+            {{ service.name }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width: 624px; margin-top: 16px">
+      <input
+        class="page-form__input"
+        type="text"
+        placeholder="Напишите пожелания по меню"
+        [formControl]="eventForm.controls.desiredMenu"
+        matInput
+      />
+    </mat-form-field>
   </div>
 </div>
