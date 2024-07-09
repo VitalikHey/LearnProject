@@ -12,7 +12,7 @@ import {
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
-import { filter, merge, Observable, Subject, takeUntil } from 'rxjs';
+import { merge, Observable, Subject, takeUntil } from 'rxjs';
 import {
   EventFormType,
   eventFormTypeTest,
@@ -46,9 +46,6 @@ export class EventFormComponent
 
   public event: Events | undefined;
 
-  protected initialPriceOnePerson: number = 0;
-  protected arrayEvent: Array<Events> = [];
-  protected valueService: Array<Service> = [];
   protected onChange?: (value: eventFormTypeTest) => void;
   protected onTouched?: () => void;
 
@@ -78,7 +75,7 @@ export class EventFormComponent
     new FormGroup<EventFormType>({
       countPeoples: new FormControl(0, Validators.min(10)),
       dateEvent: new FormControl(null, Validators.required),
-      additionalService: new FormControl(null),
+      additionalService: new FormControl(0),
       desiredMenu: new FormControl(null),
       event: new FormControl(null, Validators.required),
     });
@@ -91,29 +88,14 @@ export class EventFormComponent
   );
 
   public ngOnInit(): void {
-    this.service$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((value: Service[]): void => {
-        this.valueService = value;
-      });
-    this.events$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((value: Events[]): void => {
-        this.arrayEvent = value;
-      });
+    this.service$.pipe(takeUntil(this.destroy$));
+    this.events$.pipe(takeUntil(this.destroy$));
 
-    this.valueChanges$
-      .pipe(
-        filter(() => {
-          return this.eventForm.valid;
-        }),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((): void => {
-        if (this.onChange) {
-          this.onChange(this.eventForm.getRawValue());
-        }
-      });
+    this.valueChanges$.pipe(takeUntil(this.destroy$)).subscribe((): void => {
+      if (this.onChange) {
+        this.onChange(this.eventForm.getRawValue());
+      }
+    });
   }
 
   public ngOnDestroy(): void {

@@ -38,8 +38,7 @@ body {
 
 .continue__component {
   position: absolute;
-  margin-top: 350px;
-  margin-left: 70px;
+  margin-left: 225px;
   width: 596.8px;
   height: 48px;
 }
@@ -47,7 +46,6 @@ body {
 .button-continue {
   position: absolute;
   width: 224px;
-  height: 48px;
   background: #222733;
   border: none;
 }
@@ -62,9 +60,8 @@ body {
 
 .text-processing-condition {
   display: inline-block;
-  height: 48px;
   width: 337.6px;
-  margin-left: 260px;
+  margin-left: 35px;
   font-family: "Lab Grotesque", sans-serif;
   font-weight: 300;
   font-size: 12px;
@@ -125,9 +122,10 @@ body {
 }
 
 .heading__step {
+  margin-left: 225px;
+  margin-top: -40px;
   display: block;
   position: absolute;
-  margin-top: 48px;
   font-family: "Lab Grotesque", sans-serif;
   font-weight: 700;
   font-size: 31.2px;

@@ -1,18 +1,15 @@
-<div class="format-event__component">
+<div class="format-event__component" style="width: 400px; height: 450px">
   <div class="event-form__component" [formGroup]="eventForm">
-    <div class="radio-buttons-place">
+    <div>
       <span class="format-event__text">Выберите формат мероприятия:</span>
       <ng-container *ngIf="events$ | async as events">
-        <mat-button-toggle-group
-          [formControl]="eventForm.controls.event"
-          name="eventGroup"
-        >
+        <mat-chip-listbox [formControl]="eventForm.controls.event">
           <ng-container *ngFor="let event of events">
-            <mat-button-toggle value="{{ event.name }}">{{
+            <mat-chip-option value="{{ event.name }}">{{
               event.name
-            }}</mat-button-toggle>
+            }}</mat-chip-option>
           </ng-container>
-        </mat-button-toggle-group>
+        </mat-chip-listbox>
       </ng-container>
     </div>
     <div style="margin-top: 16px">
@@ -37,8 +34,9 @@
       >
     </div>
     <mat-form-field style="width: 624px; margin-top: 16px">
+      <mat-label>Дата мероприятия:</mat-label>
       <input
-        placeholder="Дата мероприятия:"
+        class="mat-accent"
         type="date"
         [formControl]="eventForm.controls.dateEvent"
         matInput

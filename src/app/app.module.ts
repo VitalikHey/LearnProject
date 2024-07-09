@@ -22,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatSelectModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatChipsModule,
   ],
   providers: [GetApiDataEvent, EventFormComponent],
   bootstrap: [AppComponent],

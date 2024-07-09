@@ -1,5 +1,10 @@
-<div class="continue__component">
-  <button class="button-continue">
+<div class="continue__component" [ngClass]="'show'">
+  <button
+    style="height: 48px; width: 224px; margin-top: -19px"
+    mat-raised-button
+    color="primary"
+    matStepperNext
+  >
     <span class="button-continue__text">{{ title }}</span>
   </button>
   <span class="text-processing-condition">

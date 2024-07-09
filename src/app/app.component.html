@@ -1,58 +1,32 @@
-<ng-container [ngSwitch]="isShowComponent">
-  <ng-container *ngSwitchCase="Steps.Contact">
-    <div class="header">
-      <span class="event__header">
-        <img
-          alt="blackCircle"
-          src="assets/blackCircle.svg"
-          height="38,4"
-          width="38,4"
-        />
-        <span class="text-active__header">Мероприятие</span>
-      </span>
-      <span class="contact__header">
-        <img
-          src="assets/greyCircle.svg"
-          alt="greyCircle"
-          height="38,4"
-          width="38,4"
-        />
-        <span class="text-active__header">Контакты</span>
-      </span>
-      <span class="heading__step">Расскажите о мероприятии</span>
-    </div>
-    <app-event-form [formControl]="eventForm"></app-event-form>
-    <app-continue-button
-      [title]="titleContinue"
-      (click)="nextStep()"
-    ></app-continue-button>
-  </ng-container>
-  <ng-container *ngSwitchCase="Steps.Event">
-    <div class="header">
-      <span class="event__header">
-        <img
-          alt="blackCircle"
-          src="assets/blackCircle.svg"
-          height="38,4"
-          width="38,4"
-        />
-        <span class="text-active__header">Мероприятие</span>
-      </span>
-      <span class="contact__header">
-        <img
-          src="assets/blackCircleContact.svg"
-          alt="greyCircle"
-          height="38,4"
-          width="38,4"
-        />
-        <span class="text-active__header">Контакты</span>
-      </span>
-      <span class="heading__step">Расскажите о себе</span>
-    </div>
-    <app-contact-form></app-contact-form>
-    <app-continue-button [title]="titleApplication"></app-continue-button>
-  </ng-container>
-</ng-container>
+<mat-stepper style="background: none" linear="true">
+  <mat-step>
+    <ng-template matStepLabel>
+      <span style="color: black">Мероприятие</span>
+    </ng-template>
+    <ng-template matStepContent>
+      <div class="heading__step">Расскажите о мероприятии</div>
+      <app-event-form [formControl]="eventForm"></app-event-form>
+      <app-continue-button
+        *ngIf="
+          eventForm.value?.event &&
+          eventForm.value?.dateEvent &&
+          eventForm.value?.countPeoples
+        "
+        [title]="titleContinue"
+      ></app-continue-button>
+    </ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>
+      <span style="color: black">Контакты</span>
+    </ng-template>
+    <ng-template matStepContent>
+      <div class="heading__step">Расскажите о себе</div>
+      <app-contact-form></app-contact-form>
+      <app-continue-button [title]="titleApplication"></app-continue-button>
+    </ng-template>
+  </mat-step>
+</mat-stepper>
 <app-info-event
   [priceEvent]="priceEvent"
   [priceOnePerson]="priceOnePerson"

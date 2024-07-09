@@ -1,3 +1,39 @@
-.application__component {
-  margin-left: 70px;
+.mat-vertical-stepper-header-container {
+  background-color: #f0f0f0; /* Цвет фона шагов */
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+  display: none;
+}
+
+::ng-deep .mat-horizontal-stepper-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Lab Grotesque", sans-serif;
+  .mat-step-icon {
+    margin-right: 20px !important;
+  }
+}
+
+::ng-deep .mat-step-icon {
+  background: #545e76 !important;
+  color: #222733 !important;
+  height: 38px !important;
+  width: 38px !important;
+  border-radius: 50%;
+  border: none;
+  opacity: 0.5;
+  &-selected,
+  &-number {
+    opacity: 1;
+    color: #ffffff !important;
+    background: #222733 !important;
+  }
+  &-content {
+    opacity: 1;
+  }
+}
+
+::ng-deep mat-step-icon mat-step-icon-state-number {
+  color: rebeccapurple;
 }
