@@ -3,6 +3,7 @@ import { eventFormTypeTest, Events } from './component/data-type/data-type';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { GetApiDataEvent } from './component/service/get-api-data.event';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public titleContinue: string = 'Продолжить';
   public titleApplication: string = 'Отправить заявку';
+  public validOrNotValid: boolean = false;
 
   protected priceEvent: number = 0;
   protected priceOnePerson: number = 0;
@@ -26,8 +28,6 @@ export class AppComponent implements OnInit, OnDestroy {
     null,
     Validators.required,
   );
-
-  // Если активировать и деактивировать кнопку выбора события, то оно станет неизвестным, до нажатия на новую кнопку
 
   public ngOnInit(): void {
     this.events$
@@ -56,17 +56,14 @@ export class AppComponent implements OnInit, OnDestroy {
         this.priceEvent =
           this.priceOnePerson * this.eventForm.value?.countPeoples +
           Number(this.eventForm.value?.additionalService);
+      this.validOrNotValid = !!(
+        this.priceEvent && this.eventForm.value?.dateEvent
+      );
     });
   }
 
   public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-  }
-
-  protected handleStepControl(event: Event): void {
-    if (!this.eventForm.value?.dateEvent || !this.eventForm.value?.event) {
-      event.preventDefault();
-    }
   }
 }

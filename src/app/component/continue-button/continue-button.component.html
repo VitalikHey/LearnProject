@@ -1,4 +1,8 @@
-<div class="continue__component" [ngClass]="'show'">
+<div
+  [@ValidNotValid]="valid ? 'valid' : 'notValid'"
+  class="continue__component"
+  [ngClass]="'show'"
+>
   <button
     style="height: 48px; width: 224px; margin-top: -19px"
     mat-raised-button

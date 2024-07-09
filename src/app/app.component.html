@@ -7,11 +7,7 @@
       <div class="heading__step">Расскажите о мероприятии</div>
       <app-event-form [formControl]="eventForm"></app-event-form>
       <app-continue-button
-        *ngIf="
-          eventForm.value?.event &&
-          eventForm.value?.dateEvent &&
-          eventForm.value?.countPeoples
-        "
+        [valid]="validOrNotValid"
         [title]="titleContinue"
       ></app-continue-button>
     </ng-template>
@@ -23,7 +19,10 @@
     <ng-template matStepContent>
       <div class="heading__step">Расскажите о себе</div>
       <app-contact-form></app-contact-form>
-      <app-continue-button [title]="titleApplication"></app-continue-button>
+      <app-continue-button
+        [valid]="true"
+        [title]="titleApplication"
+      ></app-continue-button>
     </ng-template>
   </mat-step>
 </mat-stepper>

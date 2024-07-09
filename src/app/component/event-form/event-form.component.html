@@ -16,10 +16,8 @@
       <mat-label>
         Количество гостей: {{ eventForm.controls.countPeoples.value }}
       </mat-label>
-      <mat-slider style="width: 620px">
+      <mat-slider min="10" max="100" style="width: 620px">
         <input
-          min="10"
-          max="100"
           step="1"
           id="peopleRange"
           placeholder="Количество гостей:"

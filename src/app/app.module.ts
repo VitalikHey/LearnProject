@@ -20,7 +20,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  provideAnimations,
+} from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 
@@ -52,7 +55,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatSliderModule,
     MatChipsModule,
   ],
-  providers: [GetApiDataEvent, EventFormComponent],
+  providers: [GetApiDataEvent, EventFormComponent, provideAnimations()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
