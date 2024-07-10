@@ -16,13 +16,13 @@ import {
       state(
         'notValid',
         style({
-          bottom: '-2000px',
+          right: '-2000px',
         }),
       ),
       state(
         'valid',
         style({
-          bottom: '0',
+          right: '0',
         }),
       ),
       transition('valid => notValid', [animate('400ms ease-in-out')]),
