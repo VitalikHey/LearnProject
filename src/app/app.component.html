@@ -1,6 +1,6 @@
 <div style="margin-left: 225px; margin-top: 20px">
-  <mat-stepper style="background: none;" [linear]="true">
-    <mat-step  [stepControl]="eventForm" class="hide-label">
+  <mat-stepper style="background: none" [linear]="false">
+    <mat-step [stepControl]="eventForm" class="hide-label">
       <ng-template matStepLabel>
         <span style="color: black">Мероприятие</span>
       </ng-template>
@@ -18,7 +18,9 @@
         <span style="color: black">Контакты</span>
       </ng-template>
       <ng-template matStepContent>
-        <div class="heading__step" style="margin-top: -30px">Расскажите о себе</div>
+        <div class="heading__step" style="margin-top: -30px">
+          Расскажите о себе
+        </div>
         <app-contact-form></app-contact-form>
         <app-continue-button
           [valid]="validOrNotValid"

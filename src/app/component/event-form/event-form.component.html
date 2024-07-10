@@ -34,14 +34,15 @@
     <mat-form-field style="width: 624px; margin-top: 16px">
       <mat-label>Дата мероприятия:</mat-label>
       <input
-        class="mat-accent"
-        type="date"
         [formControl]="eventForm.controls.dateEvent"
+        [matDatepicker]="picker"
         matInput
       />
-      <mat-error *ngIf="eventForm.controls.dateEvent.hasError('required')"
-        >Обязательное поле</mat-error
-      >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="eventForm.controls.dateEvent.hasError('required')">
+        Обязательное поле
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill" style="width: 624px; margin-top: 16px">
       <mat-label>Дополнительные услуги: </mat-label>

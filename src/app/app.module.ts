@@ -26,6 +26,8 @@ import {
 } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { MatChipsModule } from '@angular/material/chips';
     BrowserAnimationsModule,
     MatSliderModule,
     MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [GetApiDataEvent, EventFormComponent, provideAnimations()],
   bootstrap: [AppComponent],
