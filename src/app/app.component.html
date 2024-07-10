@@ -1,36 +1,40 @@
-<mat-stepper style="background: none" linear="true">
-  <mat-step>
-    <ng-template matStepLabel>
-      <span style="color: black">Мероприятие</span>
-    </ng-template>
-    <ng-template matStepContent>
-      <div class="heading__step">Расскажите о мероприятии</div>
-      <app-event-form [formControl]="eventForm"></app-event-form>
-      <app-continue-button
-        [valid]="validOrNotValid"
-        [title]="titleContinue"
-      ></app-continue-button>
-    </ng-template>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>
-      <span style="color: black">Контакты</span>
-    </ng-template>
-    <ng-template matStepContent>
-      <div class="heading__step">Расскажите о себе</div>
-      <app-contact-form></app-contact-form>
-      <app-continue-button
-        [valid]="true"
-        [title]="titleApplication"
-      ></app-continue-button>
-    </ng-template>
-  </mat-step>
-</mat-stepper>
-<app-info-event
-  [priceEvent]="priceEvent"
-  [priceOnePerson]="priceOnePerson"
-  [formatEvent]="eventForm.value?.event"
-  [countPerson]="eventForm.value?.countPeoples"
-  [dateEvent]="eventForm.value?.dateEvent"
->
-</app-info-event>
+<div style="margin-left: 225px; margin-top: 20px">
+  <mat-stepper style="background: none;" [linear]="true">
+    <mat-step  [stepControl]="eventForm" class="hide-label">
+      <ng-template matStepLabel>
+        <span style="color: black">Мероприятие</span>
+      </ng-template>
+      <ng-template matStepContent>
+        <div class="heading__step">Расскажите о мероприятии</div>
+        <app-event-form [formControl]="eventForm"></app-event-form>
+        <app-continue-button
+          [valid]="validOrNotValid"
+          [title]="titleContinue"
+        ></app-continue-button>
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        <span style="color: black">Контакты</span>
+      </ng-template>
+      <ng-template matStepContent>
+        <div class="heading__step" style="margin-top: -30px">Расскажите о себе</div>
+        <app-contact-form></app-contact-form>
+        <app-continue-button
+          [valid]="validOrNotValid"
+          [title]="titleApplication"
+        ></app-continue-button>
+      </ng-template>
+    </mat-step>
+  </mat-stepper>
+  <app-info-event
+    [priceEvent]="priceEvent"
+    [priceOnePerson]="priceOnePerson"
+    [formatEvent]="eventForm.value?.event"
+    [countPerson]="eventForm.value?.countPeoples"
+    [dateEvent]="eventForm.value?.dateEvent"
+  >
+  </app-info-event>
+</div>
+
+<!--Решить проблему изменения контента иконки степпера-->

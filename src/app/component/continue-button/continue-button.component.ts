@@ -22,7 +22,7 @@ import {
       state(
         'valid',
         style({
-          right: '-225px',
+          right: '0',
         }),
       ),
       transition('valid => notValid', [animate('400ms ease-in-out')]),

@@ -16,8 +16,8 @@
 }
 
 ::ng-deep .mat-step-icon {
-  background: #545e76 !important;
-  color: #222733 !important;
+  background: rgb(101, 116, 196) !important;
+  color: rgb(255, 255, 255) !important;
   height: 38px !important;
   width: 38px !important;
   border-radius: 50%;
@@ -26,11 +26,8 @@
   &-selected,
   &-number {
     opacity: 1;
-    color: #ffffff !important;
-    background: #222733 !important;
-  }
-  &-content {
-    opacity: 1;
+    color: rgb(255, 255, 255) !important;
+    background: rgb(63, 81, 181) !important;
   }
 }
 
