@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.priceOnePerson * this.eventForm.value?.countPeoples +
           Number(this.eventForm.value?.additionalService);
       this.validOrNotValid = !!(
-        this.priceEvent && this.eventForm.value?.dateEvent
+        this.priceOnePerson && this.eventForm.value?.dateEvent
       );
     });
   }
