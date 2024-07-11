@@ -5,7 +5,7 @@ import { catchError, Observable, of } from 'rxjs';
 
 @Injectable()
 export class GetApiDataEvent {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getApiEvent(): Observable<Events[]> {
     return this.http.get<Events[]>('http://localhost:3000/events').pipe(

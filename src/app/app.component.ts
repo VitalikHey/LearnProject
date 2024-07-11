@@ -23,10 +23,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private readonly destroy$: Subject<void> = new Subject<void>();
 
-  protected eventForm: FormControl<eventFormTypeTest | null> = new FormControl(
-    null,
-    Validators.required,
-  );
+  protected readonly eventForm: FormControl<eventFormTypeTest | null> =
+    new FormControl(null, Validators.required);
 
   public ngOnInit(): void {
     this.events$
@@ -35,27 +33,29 @@ export class AppComponent implements OnInit, OnDestroy {
         this.arrayEvent = value;
       });
     this.additionalService = this.eventForm.value?.additionalService;
-    this.eventForm.valueChanges.subscribe((): void => {
-      switch (this.eventForm.value?.event) {
-        case this.arrayEvent[0].name:
-          this.priceOnePerson = this.arrayEvent[0].priceOnePerson;
-          break;
-        case this.arrayEvent[1].name:
-          this.priceOnePerson = this.arrayEvent[1].priceOnePerson;
-          break;
-        case this.arrayEvent[2].name:
-          this.priceOnePerson = this.arrayEvent[2].priceOnePerson;
-          break;
-        default:
-          this.priceOnePerson = 0;
-          break;
-      }
+    this.eventForm.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((): void => {
+        switch (this.eventForm.value?.event) {
+          case this.arrayEvent[0].name:
+            this.priceOnePerson = this.arrayEvent[0].priceOnePerson;
+            break;
+          case this.arrayEvent[1].name:
+            this.priceOnePerson = this.arrayEvent[1].priceOnePerson;
+            break;
+          case this.arrayEvent[2].name:
+            this.priceOnePerson = this.arrayEvent[2].priceOnePerson;
+            break;
+          default:
+            this.priceOnePerson = 0;
+            break;
+        }
 
-      if (this.eventForm.value?.countPeoples)
-        this.priceEvent =
-          this.priceOnePerson * this.eventForm.value?.countPeoples +
-          Number(this.eventForm.value?.additionalService);
-    });
+        if (this.eventForm.value?.countPeoples)
+          this.priceEvent =
+            this.priceOnePerson * this.eventForm.value?.countPeoples +
+            Number(this.eventForm.value?.additionalService);
+      });
   }
 
   public ngOnDestroy(): void {

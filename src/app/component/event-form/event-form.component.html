@@ -22,8 +22,8 @@
           id="peopleRange"
           placeholder="Количество гостей:"
           class="count-people__input"
-          [formControl]="eventForm.controls.countPeoples"
           matSliderThumb
+          [formControl]="eventForm.controls.countPeoples"
         />
       </mat-slider>
       <span class="text-down__range">От 10 человек</span>
@@ -34,9 +34,9 @@
     <mat-form-field style="width: 624px; margin-top: 16px">
       <mat-label>Дата мероприятия:</mat-label>
       <input
+        matInput
         [formControl]="eventForm.controls.dateEvent"
         [matDatepicker]="picker"
-        matInput
       />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -59,8 +59,8 @@
         class="page-form__input"
         type="text"
         placeholder="Напишите пожелания по меню"
-        [formControl]="eventForm.controls.desiredMenu"
         matInput
+        [formControl]="eventForm.controls.desiredMenu"
       />
     </mat-form-field>
   </div>

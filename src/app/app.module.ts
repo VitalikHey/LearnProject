@@ -15,7 +15,6 @@ import { ContinueButtonComponent } from './component/continue-button/continue-bu
 import { ApplicationButtonComponent } from './component/application-button/application-button.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
-import { TestComponent } from './component/test/test.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
@@ -28,6 +27,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { GetApiAdditionalService } from './component/service/get-api-additional.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     InfoEventComponent,
     ContinueButtonComponent,
     ApplicationButtonComponent,
-    TestComponent,
   ],
   imports: [
     HttpClientModule,
@@ -59,7 +58,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [GetApiDataEvent, EventFormComponent, provideAnimations()],
+  providers: [
+    GetApiDataEvent,
+    EventFormComponent,
+    provideAnimations(),
+    GetApiAdditionalService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

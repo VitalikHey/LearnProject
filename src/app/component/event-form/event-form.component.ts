@@ -12,7 +12,7 @@ import {
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
-import { merge, Observable, Subject, takeUntil } from 'rxjs';
+import { map, merge, Observable, Subject, takeUntil } from 'rxjs';
 import {
   EventFormType,
   eventFormTypeTest,
@@ -80,12 +80,12 @@ export class EventFormComponent
       event: new FormControl(null, Validators.required),
     });
 
-  protected valueChanges$: Observable<string | number | null | Date> = merge(
+  protected valueChanges$: Observable<void> = merge(
     this.eventForm.controls.event.valueChanges,
     this.eventForm.controls.countPeoples.valueChanges,
     this.eventForm.controls.additionalService.valueChanges,
     this.eventForm.controls.dateEvent.valueChanges,
-  );
+  ).pipe(map(() => void 0));
 
   public ngOnInit(): void {
     this.valueChanges$.pipe(takeUntil(this.destroy$)).subscribe((): void => {

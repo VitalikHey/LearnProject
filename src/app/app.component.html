@@ -1,6 +1,6 @@
 <div style="margin-left: 225px; margin-top: 20px">
   <mat-stepper style="background: none" [linear]="false">
-    <mat-step [stepControl]="eventForm" class="hide-label">
+    <mat-step class="hide-label" [stepControl]="eventForm">
       <ng-template matStepLabel>
         <span style="color: black">Мероприятие</span>
       </ng-template>
@@ -8,16 +8,12 @@
         <div class="heading__step">Расскажите о мероприятии</div>
         <app-event-form [formControl]="eventForm"></app-event-form>
         <app-continue-button
-          [valid]="!!(
-        priceOnePerson && eventForm.value?.dateEvent
-      )"
+          [valid]="!!(priceOnePerson && eventForm.value?.dateEvent)"
           [title]="titleContinue"
         ></app-continue-button>
       </ng-template>
     </mat-step>
-    <mat-step *ngIf="!!(
-        priceOnePerson && eventForm.value?.dateEvent
-      )">
+    <mat-step *ngIf="!!(priceOnePerson && eventForm.value?.dateEvent)">
       <ng-template matStepLabel>
         <span style="color: black">Контакты</span>
       </ng-template>
@@ -27,9 +23,7 @@
         </div>
         <app-contact-form></app-contact-form>
         <app-continue-button
-          [valid]="!!(
-        priceOnePerson && eventForm.value?.dateEvent
-      )"
+          [valid]="!!(priceOnePerson && eventForm.value?.dateEvent)"
           [title]="titleApplication"
         ></app-continue-button>
       </ng-template>
@@ -44,5 +38,3 @@
   >
   </app-info-event>
 </div>
-
-<!--Решить проблему изменения контента иконки степпера-->
