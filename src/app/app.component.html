@@ -13,7 +13,7 @@
         ></app-continue-button>
       </ng-template>
     </mat-step>
-    <mat-step>
+    <mat-step *ngIf="validOrNotValid">
       <ng-template matStepLabel>
         <span style="color: black">Контакты</span>
       </ng-template>
