@@ -15,7 +15,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public titleContinue: string = 'Продолжить';
   public titleApplication: string = 'Отправить заявку';
-  public validOrNotValid: boolean = false;
 
   protected priceEvent: number = 0;
   protected priceOnePerson: number = 0;
@@ -56,9 +55,6 @@ export class AppComponent implements OnInit, OnDestroy {
         this.priceEvent =
           this.priceOnePerson * this.eventForm.value?.countPeoples +
           Number(this.eventForm.value?.additionalService);
-      this.validOrNotValid = !!(
-        this.priceOnePerson && this.eventForm.value?.dateEvent
-      );
     });
   }
 
