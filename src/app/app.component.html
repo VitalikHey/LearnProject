@@ -9,14 +9,14 @@
         <app-event-form [formControl]="eventForm"></app-event-form>
         <app-continue-button
           [valid]="!!(
-        this.priceOnePerson && this.eventForm.value?.dateEvent
+        priceOnePerson && eventForm.value?.dateEvent
       )"
           [title]="titleContinue"
         ></app-continue-button>
       </ng-template>
     </mat-step>
     <mat-step *ngIf="!!(
-        this.priceOnePerson && this.eventForm.value?.dateEvent
+        priceOnePerson && eventForm.value?.dateEvent
       )">
       <ng-template matStepLabel>
         <span style="color: black">Контакты</span>
@@ -28,7 +28,7 @@
         <app-contact-form></app-contact-form>
         <app-continue-button
           [valid]="!!(
-        this.priceOnePerson && this.eventForm.value?.dateEvent
+        priceOnePerson && eventForm.value?.dateEvent
       )"
           [title]="titleApplication"
         ></app-continue-button>

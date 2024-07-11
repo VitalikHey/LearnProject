@@ -88,9 +88,6 @@ export class EventFormComponent
   );
 
   public ngOnInit(): void {
-    this.service$.pipe(takeUntil(this.destroy$));
-    this.events$.pipe(takeUntil(this.destroy$));
-
     this.valueChanges$.pipe(takeUntil(this.destroy$)).subscribe((): void => {
       if (this.onChange) {
         this.onChange(this.eventForm.getRawValue());
