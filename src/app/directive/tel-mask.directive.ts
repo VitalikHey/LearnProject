@@ -11,17 +11,21 @@ export class PhoneMaskDirective {
   @HostListener('input', ['$event.target'])
   public onInput(input: HTMLInputElement): void {
     const inputValue: string = input.value.replace(/\D/g, '');
+
     let formattedValue: string = '+7 (';
 
     if (inputValue.length > 1) {
       formattedValue += inputValue.substring(1, 4);
     }
+
     if (inputValue.length >= 4) {
       formattedValue += ') ' + inputValue.substring(4, 7);
     }
+
     if (inputValue.length >= 7) {
       formattedValue += '-' + inputValue.substring(7, 9);
     }
+
     if (inputValue.length >= 9) {
       formattedValue += '-' + inputValue.substring(9, 11);
     }

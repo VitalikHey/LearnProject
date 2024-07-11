@@ -10,6 +10,7 @@ export class GetApiAdditionalService {
     return this.http.get<Service[]>('http://localhost:3000/services').pipe(
       catchError((err: unknown) => {
         console.error('Error', err);
+
         return of([]);
       }),
     );

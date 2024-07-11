@@ -11,6 +11,7 @@ export class GetApiDataEvent {
     return this.http.get<Events[]>('http://localhost:3000/events').pipe(
       catchError((err: unknown) => {
         console.error('Error', err);
+
         return of([]);
       }),
     );
