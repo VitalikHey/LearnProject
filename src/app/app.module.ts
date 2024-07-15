@@ -28,6 +28,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { GetApiAdditionalService } from './component/service/get-api-additional.service';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from './environments/environment';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { GetApiAdditionalService } from './component/service/get-api-additional.
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [
     GetApiDataEvent,
