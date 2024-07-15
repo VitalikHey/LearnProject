@@ -1,0 +1,23 @@
+<div
+  class="continue__component"
+  [@ValidNotValid]="valid ? 'valid' : 'notValid'"
+  [ngClass]="'show'"
+>
+  <button
+    style="height: 48px; width: 224px; margin-top: -19px"
+    mat-raised-button
+    color="primary"
+    matStepperNext
+  >
+    <span class="button-continue__text">{{ title }}</span>
+  </button>
+  <span class="text-processing-condition">
+    Нажимая кнопку вы соглашаетесь с
+    <span class="text-processing-condition__politic-conditions"
+      >условиями обработки персональных данных </span
+    >и
+    <span class="text-processing-condition__politic-conditions">
+      политикой конфиденциальности</span
+    >
+  </span>
+</div>

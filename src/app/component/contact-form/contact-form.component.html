@@ -1,0 +1,31 @@
+<div class="contact-form__component" [formGroup]="formContact">
+  <mat-form-field style="width: 624px">
+    <mat-label>Ваше имя</mat-label>
+    <input type="text" matInput [formControl]="formContact.controls.name" />
+    <mat-error *ngIf="formContact.controls.name.invalid"
+      >Обязательное поле</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field style="width: 624px">
+    <mat-label>Мобильный телефон</mat-label>
+    <input
+      type="tel"
+      appPhoneMask
+      matInput
+      [formControl]="formContact.controls.number"
+    />
+    <mat-error *ngIf="formContact.controls.number.invalid"
+      >Обязательное поле</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field style="width: 624px">
+    <mat-label>Электронная почта</mat-label>
+    <input type="email" matInput [formControl]="formContact.controls.email" />
+    <mat-error *ngIf="formContact.controls.email.hasError('email')"
+      >Проверьте корректность почтового адреса</mat-error
+    >
+    <mat-error *ngIf="formContact.controls.email.hasError('required')"
+      >Обязательное поле</mat-error
+    >
+  </mat-form-field>
+</div>
