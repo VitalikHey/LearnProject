@@ -7,12 +7,16 @@ import { HttpClient } from '@angular/common/http';
 export class GetApiAdditionalService {
   constructor(private readonly http: HttpClient) {}
   public getApiService(): Observable<Service[]> {
-    return this.http.get<Service[]>('http://localhost:3000/services').pipe(
-      catchError((err: unknown) => {
-        console.error('Error', err);
+    return this.http
+      .get<
+        Service[]
+      >(`https://angularlearn-5bb05-default-rtdb.europe-west1.firebasedatabase.app/services.json/`)
+      .pipe(
+        catchError((err: unknown) => {
+          console.error('Error', err);
 
-        return of([]);
-      }),
-    );
+          return of([]);
+        }),
+      );
   }
 }

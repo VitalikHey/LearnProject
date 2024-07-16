@@ -1,10 +1,5 @@
 import { FormControl } from '@angular/forms';
 
-export enum Steps {
-  Event = 0,
-  Contact = 1,
-}
-
 export class Events {
   public id: number;
   public name: string;

@@ -8,12 +8,16 @@ export class GetApiDataEvent {
   constructor(private readonly http: HttpClient) {}
 
   public getApiEvent(): Observable<Events[]> {
-    return this.http.get<Events[]>('http://localhost:3000/events').pipe(
-      catchError((err: unknown) => {
-        console.error('Error', err);
+    return this.http
+      .get<
+        Events[]
+      >(`https://angularlearn-5bb05-default-rtdb.europe-west1.firebasedatabase.app/event.json/`)
+      .pipe(
+        catchError((err: unknown) => {
+          console.error('Error', err);
 
-        return of([]);
-      }),
-    );
+          return of([]);
+        }),
+      );
   }
 }
