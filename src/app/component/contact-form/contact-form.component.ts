@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, OnInit } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -6,7 +6,8 @@ import {
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
-import { ContactFormType } from '../data-type/data-type';
+import { ContactFormControl, ContactFormType } from '../data-type/data-type';
+import { map, merge, Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-contact-form',
@@ -20,8 +21,10 @@ import { ContactFormType } from '../data-type/data-type';
     },
   ],
 })
-export class ContactFormComponent implements ControlValueAccessor {
-  protected onChange?: (value: ContactFormType) => void;
+export class ContactFormComponent implements ControlValueAccessor, OnInit {
+  private readonly destroy$: Subject<void> = new Subject<void>();
+
+  protected onChange?: (value: ContactFormControl) => void;
   protected onTouched?: () => void;
 
   public writeValue(value: ContactFormType): void {
@@ -34,11 +37,11 @@ export class ContactFormComponent implements ControlValueAccessor {
     }
   }
 
-  registerOnChange(fn: (value: ContactFormType) => void): void {
+  public registerOnChange(fn: (value: ContactFormControl) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
+  public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
@@ -48,4 +51,18 @@ export class ContactFormComponent implements ControlValueAccessor {
       number: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
     });
+
+  protected valueChanges$: Observable<void> = merge(
+    this.formContact.controls.number.valueChanges,
+    this.formContact.controls.name.valueChanges,
+    this.formContact.controls.email.valueChanges,
+  ).pipe(map(() => void 0));
+
+  public ngOnInit(): void {
+    this.valueChanges$.pipe(takeUntil(this.destroy$)).subscribe((): void => {
+      if (this.onChange) {
+        this.onChange(this.formContact.getRawValue());
+      }
+    });
+  }
 }

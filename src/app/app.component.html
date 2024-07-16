@@ -8,12 +8,12 @@
         <div class="heading__step">Расскажите о мероприятии</div>
         <app-event-form [formControl]="eventForm"></app-event-form>
         <app-continue-button
-          [valid]="!!(priceOnePerson && eventForm.value?.dateEvent)"
+          [valid]="!!(priceEvent && eventForm.value?.dateEvent && priceOnePerson)"
           [title]="titleContinue"
         ></app-continue-button>
       </ng-template>
     </mat-step>
-    <mat-step *ngIf="!!(priceOnePerson && eventForm.value?.dateEvent)">
+    <mat-step *ngIf="!!(priceOnePerson && eventForm.value?.dateEvent)" [stepControl]="contactForm">
       <ng-template matStepLabel>
         <span style="color: black">Контакты</span>
       </ng-template>
@@ -21,9 +21,10 @@
         <div class="heading__step" style="margin-top: -30px">
           Расскажите о себе
         </div>
-        <app-contact-form></app-contact-form>
+        <app-contact-form [formControl]="contactForm"></app-contact-form>
         <app-continue-button
-          [valid]="!!(priceOnePerson && eventForm.value?.dateEvent)"
+          (click)="handleClick()"
+          [valid]="!!(priceEvent && eventForm.value?.dateEvent)"
           [title]="titleApplication"
         ></app-continue-button>
       </ng-template>

@@ -1,8 +1,13 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { eventFormTypeTest, Events } from './component/data-type/data-type';
+import {
+  ContactFormControl,
+  eventFormTypeTest,
+  Events,
+} from './component/data-type/data-type';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { GetApiDataEvent } from './component/service/get-api-data.event';
+import { SendingDataService } from './component/service/sending-data.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +17,10 @@ import { GetApiDataEvent } from './component/service/get-api-data.event';
 export class AppComponent implements OnInit, OnDestroy {
   protected events$: Observable<Events[]> =
     inject(GetApiDataEvent).getApiEvent();
-
   public titleContinue: string = 'Продолжить';
   public titleApplication: string = 'Отправить заявку';
 
+  protected sendValueForm;
   protected priceEvent: number = 0;
   protected priceOnePerson: number = 0;
   protected arrayEvent: Array<Events> = [];
@@ -25,6 +30,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   protected readonly eventForm: FormControl<eventFormTypeTest | null> =
     new FormControl(null, Validators.required);
+
+  protected readonly contactForm: FormControl<ContactFormControl | null> =
+    new FormControl(null, Validators.required);
+
+  constructor(sending$: SendingDataService) {
+    this.sendValueForm = sending$;
+  }
 
   public ngOnInit(): void {
     this.events$
@@ -56,6 +68,24 @@ export class AppComponent implements OnInit, OnDestroy {
             this.priceOnePerson * this.eventForm.value?.countPeoples +
             Number(this.eventForm.value?.additionalService);
       });
+  }
+
+  protected handleClick() {
+    console.log(this.contactForm.value);
+    // if (this.eventForm.valid) {
+    //   this.sendValueForm
+    //     .postDataForm(this.contactForm.value)
+    //     .pipe(
+    //       catchError((err) => {
+    //         console.log('Ошибка: ', err);
+    //         return of({});
+    //       }),
+    //     )
+    //     .subscribe((response) => {
+    //       console.log('Данные отправлены', response);
+    //       this.eventForm.reset();
+    //     });
+    // }
   }
 
   public ngOnDestroy(): void {

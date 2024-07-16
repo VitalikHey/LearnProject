@@ -30,6 +30,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { GetApiAdditionalService } from './component/service/get-api-additional.service';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './environments/environment';
+import { SendingDataService } from './component/service/sending-data.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { environment } from './environments/environment';
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [
+    SendingDataService,
     GetApiDataEvent,
     EventFormComponent,
     provideAnimations(),

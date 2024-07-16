@@ -30,6 +30,12 @@ export interface eventFormTypeTest {
   event: string | null;
 }
 
+export interface ContactFormControl {
+  name: string | null;
+  number: number | null;
+  email: string | null;
+}
+
 export interface EventFormType {
   countPeoples: FormControl<number | null>;
   dateEvent: FormControl<Date | null>;
