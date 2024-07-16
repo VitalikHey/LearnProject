@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef, OnDestroy, OnInit } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -21,7 +21,9 @@ import { map, merge, Observable, Subject, takeUntil } from 'rxjs';
     },
   ],
 })
-export class ContactFormComponent implements ControlValueAccessor, OnInit {
+export class ContactFormComponent
+  implements ControlValueAccessor, OnInit, OnDestroy
+{
   private readonly destroy$: Subject<void> = new Subject<void>();
 
   protected onChange?: (value: ContactFormControl) => void;
@@ -64,5 +66,10 @@ export class ContactFormComponent implements ControlValueAccessor, OnInit {
         this.onChange(this.formContact.getRawValue());
       }
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

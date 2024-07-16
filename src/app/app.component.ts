@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public titleContinue: string = 'Продолжить';
   public titleApplication: string = 'Отправить заявку';
 
-  protected sendValueForm;
+  protected sendValueForm: SendingDataService;
   protected priceEvent: number = 0;
   protected priceOnePerson: number = 0;
   protected arrayEvent: Array<Events> = [];
