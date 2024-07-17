@@ -31,6 +31,8 @@ import { GetApiAdditionalService } from './component/service/get-api-additional.
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './environments/environment';
 import { SendingDataService } from './component/service/sending-data.service';
+import { ToastrModule } from 'ngx-toastr';
+import { ToastService } from './component/service/toast.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { SendingDataService } from './component/service/sending-data.service';
     MatDatepickerModule,
     MatNativeDateModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    ToastrModule.forRoot(),
   ],
   providers: [
     SendingDataService,
@@ -68,6 +71,7 @@ import { SendingDataService } from './component/service/sending-data.service';
     EventFormComponent,
     provideAnimations(),
     GetApiAdditionalService,
+    ToastService,
   ],
   bootstrap: [AppComponent],
 })

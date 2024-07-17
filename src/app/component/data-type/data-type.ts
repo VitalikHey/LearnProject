@@ -49,3 +49,13 @@ export interface ContactFormType {
   number: FormControl<number | null>;
   email: FormControl<string | null>;
 }
+
+export interface dataClient {
+  name?: string | null;
+  number?: number | null;
+  email?: string | null;
+  countPeoples?: number | null;
+  dateEvent?: Date | null;
+  additionalService?: number | null;
+  event?: string | null;
+}

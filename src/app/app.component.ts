@@ -5,9 +5,10 @@ import {
   Events,
 } from './component/data-type/data-type';
 import { FormControl, Validators } from '@angular/forms';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { catchError, Observable, of, Subject, takeUntil } from 'rxjs';
 import { GetApiDataEvent } from './component/service/get-api-data.event';
 import { SendingDataService } from './component/service/sending-data.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +35,10 @@ export class AppComponent implements OnInit, OnDestroy {
   protected readonly contactForm: FormControl<ContactFormControl | null> =
     new FormControl(null, Validators.required);
 
-  constructor(sending$: SendingDataService) {
+  constructor(
+    sending$: SendingDataService,
+    private toastService: ToastrService,
+  ) {
     this.sendValueForm = sending$;
   }
 
@@ -71,21 +75,20 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   protected handleClick() {
-    console.log(this.contactForm.value);
-    // if (this.eventForm.valid) {
-    //   this.sendValueForm
-    //     .postDataForm(this.contactForm.value)
-    //     .pipe(
-    //       catchError((err) => {
-    //         console.log('Ошибка: ', err);
-    //         return of({});
-    //       }),
-    //     )
-    //     .subscribe((response) => {
-    //       console.log('Данные отправлены', response);
-    //       this.eventForm.reset();
-    //     });
-    // }
+    if (this.eventForm.valid) {
+      this.sendValueForm
+        .postDataForm({ ...this.eventForm.value, ...this.contactForm.value })
+        .pipe(
+          catchError((err) => {
+            this.toastService.error(`Ошибка: ${err}`);
+            return of({});
+          }),
+        )
+        .subscribe((): void => {
+          this.toastService.success(`Регистрация мероприятия прошла успешно!`);
+          this.eventForm.reset();
+        });
+    }
   }
 
   public ngOnDestroy(): void {

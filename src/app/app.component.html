@@ -8,12 +8,17 @@
         <div class="heading__step">Расскажите о мероприятии</div>
         <app-event-form [formControl]="eventForm"></app-event-form>
         <app-continue-button
-          [valid]="!!(priceEvent && eventForm.value?.dateEvent && priceOnePerson)"
+          [valid]="
+            !!(priceEvent && eventForm.value?.dateEvent && priceOnePerson)
+          "
           [title]="titleContinue"
         ></app-continue-button>
       </ng-template>
     </mat-step>
-    <mat-step *ngIf="!!(priceOnePerson && eventForm.value?.dateEvent)" [stepControl]="contactForm">
+    <mat-step
+      *ngIf="!!(priceOnePerson && eventForm.value?.dateEvent)"
+      [stepControl]="contactForm"
+    >
       <ng-template matStepLabel>
         <span style="color: black">Контакты</span>
       </ng-template>
