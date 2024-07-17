@@ -1,13 +1,16 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, of, Subject, switchMap } from 'rxjs';
+import { catchError, Observable, of, switchMap } from 'rxjs';
 import { dataClient } from '../data-type/data-type';
+import { ToastService } from './toast.service';
 
 @Injectable()
-export class SendingDataService implements OnDestroy {
-  private readonly destroy$: Subject<void> = new Subject<void>();
+export class SendingDataService {
   private http: HttpClient;
-  constructor(http: HttpClient) {
+  constructor(
+    http: HttpClient,
+    private toastService: ToastService,
+  ) {
     this.http = http;
   }
 
@@ -17,22 +20,27 @@ export class SendingDataService implements OnDestroy {
         const isDataExists: boolean = Object.values(responseData).some(
           (item: dataClient) => {
             return (
+              String(item.dateEvent).substring(0, 10) ===
+                String(data.dateEvent).substring(0, 10) &&
               item.name === data.name &&
-              item.email === data.email &&
-              item.dateEvent?.getTime === data.dateEvent?.getTime
+              item.email === data.email
             );
           },
         );
 
         if (isDataExists) {
-          return 'Data with the same values already exists on the server.';
+          this.toastService.errorShow(
+            `Вы уже забронировали мероприятие на это имя на ${data.dateEvent}`,
+          );
+          return of({});
         } else {
+          this.toastService.successShow('Регистрация прошла успешно!');
           return this.postData(data);
         }
       }),
       catchError((error) => {
         console.error('Error:', error);
-        return of({});
+        return of(false);
       }),
     );
   }
@@ -59,10 +67,5 @@ export class SendingDataService implements OnDestroy {
           return of({});
         }),
       );
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 }

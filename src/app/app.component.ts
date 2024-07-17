@@ -85,8 +85,8 @@ export class AppComponent implements OnInit, OnDestroy {
           }),
         )
         .subscribe((): void => {
-          this.toastService.success(`Регистрация мероприятия прошла успешно!`);
           this.eventForm.reset();
+          this.contactForm.reset();
         });
     }
   }
