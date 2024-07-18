@@ -16,12 +16,12 @@ export class SendingDataService {
 
   public postDataForm(data: dataClient): Observable<Object> {
     return this.getAllData().pipe(
-      switchMap((responseData: dataClient) => {
+      switchMap((responseData: dataClient): Observable<Object> => {
         const isDataExists: boolean = Object.values(responseData).some(
           (item: dataClient) => {
             return (
-              String(item.dateEvent).substring(0, 10) ===
-                String(data.dateEvent).substring(0, 10) &&
+              new Date(String(data.dateEvent)).toLocaleDateString('ru-Ru') ===
+                new Date(String(item.dateEvent)).toLocaleDateString('ru-Ru') &&
               item.name === data.name &&
               item.email === data.email
             );
@@ -30,7 +30,7 @@ export class SendingDataService {
 
         if (isDataExists) {
           this.toastService.errorShow(
-            `Вы уже забронировали мероприятие на это имя на ${data.dateEvent}`,
+            `Вы уже забронировали мероприятие на это имя на ${new Date(String(data.dateEvent)).toLocaleDateString('ru-Ru')}`,
           );
           return of({});
         } else {
