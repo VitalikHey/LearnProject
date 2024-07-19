@@ -59,3 +59,13 @@ export interface dataClient {
   additionalService?: number | null;
   event?: string | null;
 }
+
+export interface responseServer {
+  name?: string | null;
+  number?: string;
+  email?: string;
+  countPeoples?: string;
+  dateEvent?: string;
+  additionalService?: string;
+  event?: string;
+}

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class JsonInterceptorService implements HttpInterceptor {
   public intercept(
-    req: HttpRequest<string>,
+    req: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<HttpEventType>> {
     let url: string = req.url;
@@ -20,7 +20,7 @@ export class JsonInterceptorService implements HttpInterceptor {
       url += '.json';
     }
 
-    const clonedReq: HttpRequest<string> = req.clone({ url });
+    const clonedReq: HttpRequest<unknown> = req.clone({ url });
 
     return next.handle(clonedReq);
   }

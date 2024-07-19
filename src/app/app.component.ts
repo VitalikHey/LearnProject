@@ -21,7 +21,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public titleContinue: string = 'Продолжить';
   public titleApplication: string = 'Отправить заявку';
 
-  protected sendValueForm: SendingDataService;
   protected priceEvent: number = 0;
   protected priceOnePerson: number = 0;
   protected arrayEvent: Array<Events> = [];
@@ -36,11 +35,9 @@ export class AppComponent implements OnInit, OnDestroy {
     new FormControl(null, Validators.required);
 
   constructor(
-    sending$: SendingDataService,
+    private sending: SendingDataService,
     private toastService: ToastrService,
-  ) {
-    this.sendValueForm = sending$;
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.events$
@@ -74,9 +71,9 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  protected handleClick() {
+  protected handleClick(): void {
     if (this.eventForm.valid) {
-      this.sendValueForm
+      this.sending
         .postDataForm({ ...this.eventForm.value, ...this.contactForm.value })
         .pipe(
           catchError((err) => {
