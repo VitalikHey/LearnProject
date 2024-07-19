@@ -33,6 +33,7 @@ import { environment } from './environments/environment';
 import { SendingDataService } from './component/service/sending-data.service';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastService } from './component/service/toast.service';
+import { JsonInterceptorService } from './component/service/json-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ToastService } from './component/service/toast.service';
     provideAnimations(),
     GetApiAdditionalService,
     ToastService,
+    JsonInterceptorService,
   ],
   bootstrap: [AppComponent],
 })
