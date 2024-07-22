@@ -1,4 +1,10 @@
-import { Component, forwardRef, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -13,6 +19,7 @@ import { map, merge, Observable, Subject, takeUntil } from 'rxjs';
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
