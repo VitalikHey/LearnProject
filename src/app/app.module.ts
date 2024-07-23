@@ -34,6 +34,7 @@ import { SendingDataService } from './component/service/sending-data.service';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastService } from './component/service/toast.service';
 import { JsonInterceptorService } from './component/service/json-interceptor.service';
+import { ObservableFocusService } from './component/service/observable-focus.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { JsonInterceptorService } from './component/service/json-interceptor.ser
     GetApiAdditionalService,
     ToastService,
     JsonInterceptorService,
+    ObservableFocusService,
   ],
   bootstrap: [AppComponent],
 })

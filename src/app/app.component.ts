@@ -15,6 +15,7 @@ import { catchError, Observable, of, Subject, takeUntil } from 'rxjs';
 import { GetApiDataEvent } from './component/service/get-api-data.event';
 import { SendingDataService } from './component/service/sending-data.service';
 import { ToastrService } from 'ngx-toastr';
+import { ObservableFocusService } from './component/service/observable-focus.service';
 
 @Component({
   selector: 'app-root',
@@ -23,8 +24,6 @@ import { ToastrService } from 'ngx-toastr';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
-  protected events$: Observable<Events[]> =
-    inject(GetApiDataEvent).getApiEvent();
   public titleContinue: string = 'Продолжить';
   public titleApplication: string = 'Отправить заявку';
 
@@ -32,6 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
   protected priceOnePerson: number = 0;
   protected arrayEvent: Array<Events> = [];
   protected additionalService: number | undefined | null = 0;
+  protected events$: Observable<Events[]> =
+    inject(GetApiDataEvent).getApiEvent();
 
   private readonly destroy$: Subject<void> = new Subject<void>();
 
@@ -42,11 +43,17 @@ export class AppComponent implements OnInit, OnDestroy {
     new FormControl(null, Validators.required);
 
   constructor(
+    private focus$: ObservableFocusService,
     private sending: SendingDataService,
     private toastService: ToastrService,
   ) {}
 
   public ngOnInit(): void {
+    this.focus$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((target: EventTarget | null): void => {
+        console.log(target);
+      });
     this.events$
       .pipe(takeUntil(this.destroy$))
       .subscribe((value: Events[]): void => {
