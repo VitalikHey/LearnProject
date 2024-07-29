@@ -11,7 +11,16 @@ import {
   Events,
 } from './component/data-type/data-type';
 import { FormControl, Validators } from '@angular/forms';
-import { catchError, Observable, of, Subject, takeUntil } from 'rxjs';
+import {
+  catchError,
+  map,
+  Observable,
+  of,
+  Subject,
+  takeUntil,
+  takeWhile,
+  timer,
+} from 'rxjs';
 import { GetApiDataEvent } from './component/service/get-api-data.event';
 import { SendingDataService } from './component/service/sending-data.service';
 import { ToastrService } from 'ngx-toastr';
@@ -49,6 +58,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
+    this.countDown(0)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value: number): void => console.log(value));
     this.focus$
       .pipe(takeUntil(this.destroy$))
       .subscribe((target: EventTarget | null): void => {
@@ -83,6 +95,18 @@ export class AppComponent implements OnInit, OnDestroy {
             this.priceOnePerson * this.eventForm.value?.countPeoples +
             Number(this.eventForm.value?.additionalService);
       });
+  }
+
+  // Обратный отсчет на RxJs
+
+  private countDown(initialNumber: number): Observable<number> {
+    return timer(0, 1000).pipe(
+      map((value: number) => {
+        return initialNumber - value;
+      }),
+      takeWhile(Boolean, true),
+      takeUntil(this.destroy$),
+    );
   }
 
   protected handleClick(): void {
