@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-info-event',
   templateUrl: './info-event.component.html',
   styleUrls: ['./info-event.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoEventComponent {
   @Input() public priceEvent?: number = 0;

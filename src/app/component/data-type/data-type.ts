@@ -1,10 +1,5 @@
 import { FormControl } from '@angular/forms';
 
-export enum Steps {
-  Event = 0,
-  Contact = 1,
-}
-
 export class Events {
   public id: number;
   public name: string;
@@ -35,6 +30,12 @@ export interface eventFormTypeTest {
   event: string | null;
 }
 
+export interface ContactFormControl {
+  name: string | null;
+  number: number | null;
+  email: string | null;
+}
+
 export interface EventFormType {
   countPeoples: FormControl<number | null>;
   dateEvent: FormControl<Date | null>;
@@ -47,4 +48,24 @@ export interface ContactFormType {
   name: FormControl<string | null>;
   number: FormControl<number | null>;
   email: FormControl<string | null>;
+}
+
+export interface dataClient {
+  name?: string | null;
+  number?: number | null;
+  email?: string | null;
+  countPeoples?: number | null;
+  dateEvent?: Date | null;
+  additionalService?: number | null;
+  event?: string | null;
+}
+
+export interface responseServer {
+  name?: string | null;
+  number?: string;
+  email?: string;
+  countPeoples?: string;
+  dateEvent?: string;
+  additionalService?: string;
+  event?: string;
 }
